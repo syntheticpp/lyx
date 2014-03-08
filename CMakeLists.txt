@@ -45,6 +45,23 @@ set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true)
 # Supress regeneration
 set(CMAKE_SUPPRESS_REGENERATION FALSE)
 
+if(MINGW OR LYX_XMINGW)
+    set(GNUWIN32_DIR ${CMAKE_SOURCE_DIR}/development/3rdparty/win_x86)
+endif()
+
+if(LYX_XMINGW)
+    set(CMAKE_SYSTEM_NAME Windows)
+    set(TOOLNAME ${LYX_XMINGW})
+    set(TOOLCHAIN "${TOOLNAME}-")
+    set(CMAKE_C_COMPILER   "${TOOLCHAIN}gcc"     CACHE PATH "Mingw C compiler" FORCE)
+    set(CMAKE_CXX_COMPILER "${TOOLCHAIN}g++"     CACHE PATH "Mingw C++ compiler" FORCE)
+    set(CMAKE_RC_COMPILER  "${TOOLCHAIN}windres" CACHE PATH "Mingw rc compiler" FORCE)
+
+    set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM BOTH)
+    set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+    set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+endif()
+
 if(NOT help AND NOT HELP)
 	# 'project' triggers the searching for a compiler
 	project(${LYX_PROJECT})
@@ -170,9 +187,6 @@ else()
 	set(LYX_MERGE_REBUILD OFF)
 endif()
 
-if(MINGW)
-    set(GNUWIN32_DIR ${CMAKE_SOURCE_DIR}/development/3rdparty/win_x86)
-endif()
 
 if(LYX_DEPENDENCIES_DOWNLOAD)
 	message(STATUS)
@@ -486,6 +500,12 @@ if(LYX_CXX_FLAGS_EXTRA)
 	endforeach()
 endif()
 
+
+if(LYX_XMINGW)
+    set(QT_MINGW_DIR ${LYX_QT4} CACHE PATH "Qt for Mingw" FORCE)
+    list(APPEND CMAKE_FIND_ROOT_PATH ${QT_MINGW_DIR} ${GNUWIN32_DIR})
+endif()
+
 if(LYX_USE_QT MATCHES "QT5")
   find_package(Qt5Core REQUIRED)
   if (Qt5Core_FOUND)
@@ -553,6 +573,7 @@ if(LYX_NLS)
 		endforeach()
 	endif()
 endif()
+
 
 find_package(ICONV REQUIRED)
 find_package(ZLIB REQUIRED)
