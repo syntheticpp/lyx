@@ -37,9 +37,9 @@ if(WIN32)
     set(CPACK_BINARY_ZIP 1)
     if(MINGW)
         get_filename_component(MINGW_BIN_PATH ${CMAKE_CXX_COMPILER} PATH)
-        if(xmingw)
-            get_filename_component(mingw_name ${MINGW_NAME} NAME)
-            set(MINGW_BIN_PATH ${MINGW_BIN_PATH}/../${mingw_name}/lib)
+        if(LYX_XMINGW)
+                get_filename_component(mingw_name ${LYX_XMINGW} NAME)
+                set(MINGW_BIN_PATH ${MINGW_BIN_PATH}/../${mingw_name}/lib)
         endif()
         if(EXISTS ${MINGW_BIN_PATH}/libgcc_s_sjlj-1.dll)
             list(APPEND runtime ${MINGW_BIN_PATH}/libgcc_s_sjlj-1.dll)
@@ -63,6 +63,12 @@ if(WIN32)
                     ${QT_BINARY_DIR}/QtCore4.dll
                     ${QT_BINARY_DIR}/QtGui4.dll
                     ${QT_BINARY_DIR}/QtNetwork4.dll
+                    ${QT_PLUGINS_DIR}/imageformats/qgif4.dll
+                    ${QT_PLUGINS_DIR}/imageformats/qico4.dll
+                    ${QT_PLUGINS_DIR}/imageformats/qmng4.dll
+                    ${QT_PLUGINS_DIR}/imageformats/qsvg4.dll
+                    ${QT_PLUGINS_DIR}/imageformats/qtga4.dll
+                    ${QT_PLUGINS_DIR}/imageformats/qtiff4.dll
                 DESTINATION bin CONFIGURATIONS Release)
     endif()
 else()
