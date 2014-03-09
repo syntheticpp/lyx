@@ -45,10 +45,6 @@ set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true)
 # Supress regeneration
 set(CMAKE_SUPPRESS_REGENERATION FALSE)
 
-if(MINGW OR LYX_XMINGW)
-    set(GNUWIN32_DIR ${CMAKE_SOURCE_DIR}/development/3rdparty/win_x86)
-endif()
-
 if(LYX_XMINGW)
     set(CMAKE_SYSTEM_NAME Windows)
     set(TOOLNAME ${LYX_XMINGW})
@@ -65,6 +61,10 @@ endif()
 if(NOT help AND NOT HELP)
 	# 'project' triggers the searching for a compiler
 	project(${LYX_PROJECT})
+endif()
+
+if(MINGW OR LYX_XMINGW)
+    set(GNUWIN32_DIR ${CMAKE_SOURCE_DIR}/development/3rdparty/win_x86)
 endif()
 
 if(UNIX)
