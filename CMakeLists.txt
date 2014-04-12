@@ -211,6 +211,10 @@ if(LYX_DEPENDENCIES_DOWNLOAD)
 		endif()
 	endforeach()
 	set(GNUWIN32_DIR ${LYX_DEPENDENCIES_DIR}/deps20)
+    if(MSVC12)
+        # handle msvc10 bug
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /vd2")
+    endif()
 endif()
 
 
