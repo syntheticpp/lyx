@@ -12,5 +12,5 @@ script:
 
 branches:
  only:
-   - bleeding-edge
+   - bleeding-edge-master
    
