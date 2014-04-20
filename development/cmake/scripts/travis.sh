@@ -138,13 +138,13 @@ if [ "$2" = "x64" ]; then
     mingw=x86_64-w64-mingw32
     exc=-seh
     mingwdir=mingw64$exc
-    branch=
+    branch=LyX$ver-master-win64
 else
     win=win32
     mingw=i686-w64-mingw32
     exc=-dw2
     mingwdir=mingw32$exc
-    branch=LyX$ver-win32
+    branch=LyX$ver-master-win32
 fi
 
 qtver=4.8.4
@@ -234,9 +234,9 @@ mv $builddir/FindQt4.cmake ../lyx/development/cmake/modules/
 make package
 checkExitCode
 
-mv LyX-2.2.0-win32.zip $versionname-$win.zip
+mv LyX22-2.2.0-win32.zip $branch.zip
 
-if [ ! -e $versionname-$win.zip ]; then
+if [ ! -e $branch.zip ]; then
     exit 1
 fi
 
@@ -245,8 +245,8 @@ if [ $deploybinary -eq 1 ]; then
     git checkout master
     git branch -D $branch
     git checkout -b $branch
-    cp -f $builddir/$versionname-$win.zip .
-    git add $versionname-$win.zip
+    cp -f $builddir/$branch.zip .
+    git add $branch.zip
     checkExitCode
 
     git commit --quiet -m"Update $win binary to version $versionname"
