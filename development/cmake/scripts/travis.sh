@@ -234,7 +234,7 @@ mv $builddir/FindQt4.cmake ../lyx/development/cmake/modules/
 make package
 checkExitCode
 
-mv LyX21-2.1.1-win32.zip $branch.zip
+mv LyX21-2.1.2-win32.zip $branch.zip
 
 if [ ! -e $branch.zip ]; then
     exit 1
