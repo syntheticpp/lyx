@@ -147,7 +147,7 @@ else
     branch=LyX$ver-master-win32
 fi
 
-qtver=4.8.4
+qtver=5.5.0
 qtver=Qt-$qtver-$win-g++-$mingw$exc-$gccver
 mingwver=$mingw-gcc$exc-$gccver
 
@@ -212,7 +212,7 @@ $cmakebin ../lyx/ \
     -DLYX_PROGRAM_SUFFIX="" \
     -DLYX_CONSOLE=FORCE \
     -DLYX_XMINGW=/opt/$mingwdir/bin/$mingw \
-    -DLYX_QT4=/opt/$qtver \
+    -DLYX_QT5=/opt/$qtver \
     -DLYX_QUIET=1 \
     -DGNUWIN32_DIR=$builddir/../lyx/development/3rdparty/win_x86 \
     $pch $mergefile
