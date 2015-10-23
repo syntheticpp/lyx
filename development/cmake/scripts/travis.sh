@@ -20,6 +20,11 @@ if [ -z $versionname ]; then
     versionname=LyX$ver-$date
 fi
 
+dep=$HOME/dep
+mkdir -p $dep
+
+
+
 echo ---------------------------------------------------------
 echo ---------- Building $versionname
 echo ---------------------------------------------------------
@@ -41,9 +46,10 @@ dpkg --get-selections | grep mingw
 iam=`whoami`
 travis=travis
 if [ "$iam" = "$travis" ]; then
-    sudo rm -rf /usr/lib/jvm
+    #sudo rm -rf /usr/lib/jvm
     df -h
 fi
+
 echo ---------------------------------------------------------
 echo
 
@@ -111,84 +117,98 @@ cd $builddir
 #
 # get actual cmake
 #
-cmakever=cmake-2.8.12.2-Linux-i386
+cmakever=cmake-3.3.1-Linux-x86_64
 
 if [ "$iam" = "$travis" ]; then
-    if [ ! -d /opt/$cmakever ]; then
-        cmakebin=x
-        if [ ! -d /opt/$cmakever ]; then
-            wget http://www.cmake.org/files/v2.8/$cmakever.tar.gz
-            checkExitCode
-            cd /opt
-            sudo tar xf $builddir/$cmakever.tar.gz
-            checkExitCode
-            cd $builddir
-        fi
+    if [ ! -d $dep/$cmakever ]; then
+          cmakebin=x
+          if [ ! -d $dep/$cmakever ]; then
+              wget http://www.cmake.org/files/v3.3/$cmakever.tar.gz
+              checkExitCode
+              cd $dep
+              tar xf $builddir/$cmakever.tar.gz
+              checkExitCode
+              cd $builddir
+          fi
     fi
-    cmakebin=/opt/$cmakever/bin/cmake
+    cmakebin=$dep/$cmakever/bin/cmake
 else
     cmakebin=cmake
 fi
 $cmakebin --version
 checkExitCode
 
-gccver=4.7.2
+server=http://sourceforge.net/projects/kst/files/3rdparty
+
 if [ "$2" = "x64" ]; then
-    win=win64
     mingw=x86_64-w64-mingw32
-    exc=-seh
-    mingwdir=mingw64$exc
+    win=win64
     branch=LyX$ver-master-win64
 else
     win=win32
     mingw=i686-w64-mingw32
-    exc=-dw2
-    mingwdir=mingw32$exc
     branch=LyX$ver-master-win32
 fi
 
-qtver=5.5.0
-qtver=Qt-$qtver-$win-g++-$mingw$exc-$gccver
-mingwver=$mingw-gcc$exc-$gccver
+if [ $downloadgcc ]; then
 
+    gccver=4.7.2
+    if [ "$2" = "x64" ]; then
+        exc=-seh
+        mingwdir=mingw64$exc
+    else
+        exc=-dw2
+        mingwdir=mingw32$exc
+    fi
 
-server=http://sourceforge.net/projects/kst/files/3rdparty
-# ---------------------------------------------------------
-#
-# download and install mingw
-#
-if [ ! -d /opt/$mingwdir ]; then
-    mingwtar=$mingwver-Ubuntu64-12.04.tar
-    wget $server/$mingwtar.xz
-    checkExitCode
-    xz -d $mingwtar.xz
-    cd /opt
-    sudo tar xf $builddir/$mingwtar
-    checkExitCode
-    cd $builddir
+    qtver=5.5.0
+    qtver=Qt-$qtver-$win-g++-$mingw$exc-$gccver
+    mingwver=$mingw-gcc$exc-$gccver
+    
+    # ---------------------------------------------------------
+    #
+    # download and install mingw
+    #
+
+    if [ ! -d $dep/$mingwdir ]; then
+        mingwtar=$mingwver-Ubuntu64-12.04.tar
+        wget $server/$mingwtar.xz
+        checkExitCode
+        xz -d $mingwtar.xz
+        cd $dep
+        tar xf $builddir/$mingwtar
+        checkExitCode
+        cd $builddir
+    fi
+    compiler=$dep/$mingwdir/bin/$mingw-gcc
+    LTS=12.04
+else
+    qtver=5.5.1
+    qtver=Qt-$qtver-$mingw
+    compiler=$mingw
+    LTS=14.04
 fi
-
 echo Checking mingw installation ...
-/opt/$mingwdir/bin/$mingw-gcc -dumpversion
+$compiler-gcc -dumpversion
 checkExitCode
-
 
 
 # ---------------------------------------------------------
 #
 # download and install Qt
 #
-if [ ! -d /opt/$qtver ]; then
-    qttar=$qtver-Ubuntu64-12.04.tar
+if [ ! -d $dep/$qtver ]; then
+    qttar=$qtver-Ubuntu64-$LTS$tarver.tar
     wget $server/$qttar.xz
     checkExitCode
     xz -d $qttar.xz
-    cd /opt
-    sudo tar xf $builddir/$qttar
+    cd $dep
+    tar xf $builddir/$qttar
     checkExitCode
+    echo -e "[Paths]\nPrefix = $dep/$qtver" > $dep/$qtver/bin/qt.conf
     cd $builddir
 fi
-export PATH=/opt/$qtver/bin:$PATH
+export PATH=$dep/$qtver/bin:$PATH
 echo Checking Qt installation ...
 which qmake
 checkExitCode
@@ -211,16 +231,17 @@ $cmakebin ../lyx/ \
     -DLYX_CPACK=1 \
     -DLYX_PROGRAM_SUFFIX="" \
     -DLYX_CONSOLE=FORCE \
-    -DLYX_XMINGW=/opt/$mingwdir/bin/$mingw \
-    -DLYX_QT5=/opt/$qtver \
+    -DLYX_XMINGW=$compiler \
+    -DLYX_USE_QT=QT5 \
     -DLYX_QUIET=1 \
+    -DLYX_SVG=0 \
     -DGNUWIN32_DIR=$builddir/../lyx/development/3rdparty/win_x86 \
     $pch $mergefile
 
 checkExitCode
 
 
-processors=6 # /proc reports 32
+#processors=6 # /proc reports 32
 make -j $processors
 checkExitCode
 
