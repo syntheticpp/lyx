@@ -234,7 +234,7 @@ $cmakebin ../lyx/ \
     -DLYX_XMINGW=$compiler \
     -DLYX_USE_QT=QT5 \
     -DLYX_QUIET=1 \
-    -DLYX_SVG=0 \
+    -DLYX_ENABLE_CXX11=1 \
     -DGNUWIN32_DIR=$builddir/../lyx/development/3rdparty/win_x86 \
     $pch $mergefile
 
@@ -246,7 +246,6 @@ make -j $processors
 checkExitCode
 
 mv $builddir/FindQt4.cmake ../lyx/development/cmake/modules/
-
 
 
 # ---------------------------------------------------------

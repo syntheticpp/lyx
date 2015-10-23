@@ -541,6 +541,7 @@ if(LYX_CXX_FLAGS_EXTRA)
 	endforeach()
 endif()
 
+
 if(LYX_XMINGW)
 	list(APPEND CMAKE_FIND_ROOT_PATH ${GNUWIN32_DIR})
 endif()

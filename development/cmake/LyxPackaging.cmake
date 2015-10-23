@@ -51,6 +51,10 @@ elseif(WIN32)
                 set(MINGW_BIN_PATH /usr/lib/gcc/${LYX_XMINGW}/${GCC_VERSION})
                 set(MINGW_LIB_PATH /usr/${LYX_XMINGW}/lib)
             endif()
+            install(FILES 
+                ${CMAKE_SOURCE_DIR}/development/3rdparty/win_x86/bin/iconv.dll
+                DESTINATION bin
+                CONFIGURATIONS Release)
         endif()
         if(EXISTS ${MINGW_BIN_PATH}/libgcc_s_sjlj-1.dll)
             list(APPEND runtime ${MINGW_BIN_PATH}/libgcc_s_sjlj-1.dll)
