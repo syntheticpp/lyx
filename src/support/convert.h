@@ -45,6 +45,10 @@ template<> double convert<double>(std::string const & s);
 template<> int convert<int>(char const * cptr);
 template<> double convert<double>(char const * cptr);
 
+template<> std::string convert<std::string>(unsigned long long);
+template<> docstring convert<docstring>(long long);
+template<> docstring convert<docstring>(unsigned long long);
+
 } // namespace lyx
 
 #endif

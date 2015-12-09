@@ -367,6 +367,8 @@ template<> docstring bformat(docstring const & fmt, int arg1, int arg2);
 template<> docstring bformat(docstring const & fmt, docstring arg1, docstring arg2, docstring arg3);
 template<> docstring bformat(docstring const & fmt, docstring arg1, docstring arg2, docstring arg3, docstring arg4);
 
+template<> docstring bformat(docstring const & fmt, long long);
+
 
 } // namespace support
 } // namespace lyx

@@ -171,4 +171,23 @@ double convert<double>(char const * cptr)
 }
 
 
+template<>
+string convert<string>(unsigned ´long long ul)
+{
+	return lexical_cast<string>(ul);
+}
+
+template<>
+docstring convert<docstring>(long long l)
+{
+	return lexical_cast<docstring>(l);
+}
+
+template<>
+docstring convert<docstring>(unsigned long long l)
+{
+	return lexical_cast<docstring>(l);
+}
+
+
 } // namespace lyx

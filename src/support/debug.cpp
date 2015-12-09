@@ -255,7 +255,10 @@ LyXErr & operator<<(LyXErr & l, ostream &(*t)(ostream &))
 { return toStream(l, t); }
 LyXErr & operator<<(LyXErr & l, ios_base &(*t)(ios_base &))
 { return toStream(l, t); }
-
+LyXErr & operator<<(LyXErr & l, unsigned long long t)
+{ return toStream(l, t); }
+LyXErr & operator<<(LyXErr & l, pit_type t)
+{ return toStream(l, t); }
 
 // The global instance
 LyXErr lyxerr;

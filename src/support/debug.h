@@ -16,6 +16,7 @@
 #define LYXDEBUG_H
 
 #include "support/strfwd.h"
+#include "types.h"
 
 // Forward definitions do not work with libc++
 // but ios_base has already been defined in strfwd
@@ -208,6 +209,9 @@ LyXErr & operator<<(LyXErr &, docstring const &);
 LyXErr & operator<<(LyXErr &, support::FileName const &);
 LyXErr & operator<<(LyXErr &, std::ostream &(*)(std::ostream &));
 LyXErr & operator<<(LyXErr &, std::ios_base &(*)(std::ios_base &));
+
+LyXErr & operator<<(LyXErr &, unsigned long long);
+LyXErr & operator<<(LyXErr &, pit_type);
 
 extern LyXErr lyxerr;
 

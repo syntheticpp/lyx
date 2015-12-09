@@ -230,5 +230,6 @@ template otexstream & operator<< <double>(otexstream &, double);
 template otexstream & operator<< <int>(otexstream &, int);
 template otexstream & operator<< <unsigned int>(otexstream &, unsigned int);
 template otexstream & operator<< <unsigned long>(otexstream &, unsigned long);
+template otexstream & operator<< <unsigned long long>(otexstream &, unsigned long long);
 
 }
