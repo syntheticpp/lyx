@@ -61,11 +61,6 @@
 #endif
 
 
-extern "C" {
-extern void __wgetmainargs(int * argc, wchar_t *** argv, wchar_t *** envp,
-			   int expand_wildcards, int * new_mode);
-}
-
 using namespace std;
 
 namespace lyx {
@@ -157,9 +152,7 @@ void init(int argc, char * argv[])
 
 
 	// Get the wide program arguments array
-	wchar_t ** envp = 0;
-	int newmode = 0;
-	__wgetmainargs(&argc_, &argv_, &envp, -1, &newmode);
+	argv_ = CommandLineToArgvW (GetCommandLineW(), &argc_);
 	LATTEST(argc == argc_);
 
 	// If Cygwin is detected, query the cygdrive prefix.
