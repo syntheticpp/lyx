@@ -236,6 +236,7 @@ $cmakebin ../lyx/ \
     -DLYX_QUIET=1 \
     -DLYX_ENABLE_CXX11=1 \
     -DLYX_HUNSPELL=1 \
+    -DLYX_3RDPARTY_BUILD=1 \
     $pch $mergefile
 
 checkExitCode
