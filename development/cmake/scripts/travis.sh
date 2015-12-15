@@ -117,13 +117,13 @@ cd $builddir
 #
 # get actual cmake
 #
-cmakever=cmake-3.3.1-Linux-x86_64
+cmakever=cmake-3.4.1-Linux-x86_64
 
 if [ "$iam" = "$travis" ]; then
     if [ ! -d $dep/$cmakever ]; then
           cmakebin=x
           if [ ! -d $dep/$cmakever ]; then
-              wget http://www.cmake.org/files/v3.3/$cmakever.tar.gz
+              wget http://www.cmake.org/files/v3.4/$cmakever.tar.gz
               checkExitCode
               cd $dep
               tar xf $builddir/$cmakever.tar.gz
