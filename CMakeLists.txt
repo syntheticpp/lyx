@@ -603,7 +603,7 @@ set(Spelling_FOUND OFF)
 set(Include_used_spellchecker)   # String will be inserted into config.h
 
 if(LYX_3RDPARTY_BUILD)
-    add_subdirectory(src/3rdparty/hunspell)
+    add_subdirectory(3rdparty/hunspell)
     add_definitions(-DHUNSPELL_STATIC)
     set(HUNSPELL_FOUND ON)
     message(STATUS "  * Hunspell:")
@@ -669,9 +669,9 @@ if(UNIX)
 endif()
 
 if(LYX_3RDPARTY_BUILD)
-    add_subdirectory(src/3rdparty/libiconv)
+    add_subdirectory(3rdparty/libiconv)
     set(HAVE_ICONV_CONST 1)
-    add_subdirectory(src/3rdparty/zlib)
+    add_subdirectory(3rdparty/zlib)
 endif()
 
 
