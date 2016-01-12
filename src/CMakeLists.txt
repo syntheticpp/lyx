@@ -129,9 +129,10 @@ target_link_libraries(${_lyx}
 	graphics
 	support
 	${ICONV_LIBRARY}
+	${ZLIB_LIBRARY}
 	${LYX_QTMAIN_LIBRARY}
 	${vld_dll})
-
+message(STATUS "ZLIB_LIBRARY ${ZLIB_LIBRARY}")
 qt_use_modules(${_lyx} Core Gui)
 
 lyx_target_link_libraries(${_lyx} HUNSPELL ASPELL ENCHANT Magic)
