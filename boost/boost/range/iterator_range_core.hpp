@@ -25,6 +25,7 @@
 #include <boost/assert.hpp>
 #include <boost/iterator/iterator_traits.hpp>
 #include <boost/iterator/iterator_facade.hpp>
+<<<<<<< HEAD
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/not.hpp>
 #include <boost/mpl/or.hpp>
@@ -33,6 +34,11 @@
 #include <boost/type_traits/is_base_and_derived.hpp>
 #include <boost/type_traits/is_convertible.hpp>
 #include <boost/type_traits/is_function.hpp>
+=======
+#include <boost/mpl/or.hpp>
+#include <boost/type_traits/is_abstract.hpp>
+#include <boost/type_traits/is_array.hpp>
+>>>>>>> github/build-bot-2.1.x
 #include <boost/type_traits/is_pointer.hpp>
 #include <boost/type_traits/is_same.hpp>
 #include <boost/range/functions.hpp>
@@ -468,8 +474,16 @@ public:
             {
             };
 
+<<<<<<< HEAD
         protected:
             typedef iterator_range_detail::iterator_range_impl<IteratorT> impl;
+=======
+        private: // for return value of operator()()
+            typedef BOOST_DEDUCED_TYPENAME
+                boost::mpl::if_< boost::mpl::or_< boost::is_abstract< value_type >, 
+                                                  boost::is_array< value_type > >,
+                                 reference, value_type >::type abstract_value_type;
+>>>>>>> github/build-bot-2.1.x
 
         public:
             typedef iterator_range<IteratorT> type;

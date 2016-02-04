@@ -3,7 +3,11 @@
 #ifndef BOOST_ANY_INCLUDED
 #define BOOST_ANY_INCLUDED
 
+<<<<<<< HEAD
 #if defined(_MSC_VER)
+=======
+#if defined(_MSC_VER) && (_MSC_VER >= 1020)
+>>>>>>> github/build-bot-2.1.x
 # pragma once
 #endif
 
@@ -20,7 +24,10 @@
 #include <boost/type_index.hpp>
 #include <boost/type_traits/remove_reference.hpp>
 #include <boost/type_traits/decay.hpp>
+<<<<<<< HEAD
 #include <boost/type_traits/remove_cv.hpp>
+=======
+>>>>>>> github/build-bot-2.1.x
 #include <boost/type_traits/add_reference.hpp>
 #include <boost/type_traits/is_reference.hpp>
 #include <boost/type_traits/is_const.hpp>
@@ -29,7 +36,26 @@
 #include <boost/utility/enable_if.hpp>
 #include <boost/type_traits/is_same.hpp>
 #include <boost/type_traits/is_const.hpp>
+<<<<<<< HEAD
 #include <boost/mpl/if.hpp>
+=======
+
+// See boost/python/type_id.hpp
+// TODO: add BOOST_TYPEID_COMPARE_BY_NAME to config.hpp
+# if (defined(__GNUC__) && __GNUC__ >= 3) \
+ || defined(_AIX) \
+ || (   defined(__sgi) && defined(__host_mips)) \
+ || (defined(__hpux) && defined(__HP_aCC)) \
+ || (defined(linux) && defined(__INTEL_COMPILER) && defined(__ICC))
+#  define BOOST_AUX_ANY_TYPE_ID_NAME
+#include <cstring>
+# endif 
+>>>>>>> github/build-bot-2.1.x
+
+#if defined(_MSC_VER) 
+#pragma warning(push)
+#pragma warning(disable: 4172) // Mistakenly warns: returning address of local variable or temporary
+#endif
 
 namespace boost
 {
@@ -44,9 +70,13 @@ namespace boost
 
         template<typename ValueType>
         any(const ValueType & value)
+<<<<<<< HEAD
           : content(new holder<
                 BOOST_DEDUCED_TYPENAME remove_cv<BOOST_DEDUCED_TYPENAME decay<const ValueType>::type>::type
             >(value))
+=======
+          : content(new holder<BOOST_DEDUCED_TYPENAME decay<const ValueType>::type>(value))
+>>>>>>> github/build-bot-2.1.x
         {
         }
 
@@ -137,7 +167,11 @@ namespace boost
             any().swap(*this);
         }
 
+<<<<<<< HEAD
         const boost::typeindex::type_info& type() const BOOST_NOEXCEPT
+=======
+        const std::type_info & type() const BOOST_NOEXCEPT
+>>>>>>> github/build-bot-2.1.x
         {
             return content ? content->type() : boost::typeindex::type_id<void>().type_info();
         }
@@ -158,7 +192,11 @@ namespace boost
 
         public: // queries
 
+<<<<<<< HEAD
             virtual const boost::typeindex::type_info& type() const BOOST_NOEXCEPT = 0;
+=======
+            virtual const std::type_info & type() const BOOST_NOEXCEPT = 0;
+>>>>>>> github/build-bot-2.1.x
 
             virtual placeholder * clone() const = 0;
 
@@ -182,7 +220,11 @@ namespace boost
 #endif
         public: // queries
 
+<<<<<<< HEAD
             virtual const boost::typeindex::type_info& type() const BOOST_NOEXCEPT
+=======
+            virtual const std::type_info & type() const BOOST_NOEXCEPT
+>>>>>>> github/build-bot-2.1.x
             {
                 return boost::typeindex::type_id<ValueType>().type_info();
             }
@@ -225,12 +267,16 @@ namespace boost
         lhs.swap(rhs);
     }
 
+<<<<<<< HEAD
     class BOOST_SYMBOL_VISIBLE bad_any_cast :
 #ifndef BOOST_NO_RTTI
         public std::bad_cast
 #else
         public std::exception
 #endif
+=======
+    class BOOST_SYMBOL_VISIBLE bad_any_cast : public std::bad_cast
+>>>>>>> github/build-bot-2.1.x
     {
     public:
         virtual const char * what() const BOOST_NOEXCEPT_OR_NOTHROW
@@ -298,6 +344,20 @@ namespace boost
 #endif
 
 
+#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
+    template<typename ValueType>
+    inline ValueType&& any_cast(any&& operand)
+    {
+        BOOST_STATIC_ASSERT_MSG(
+            boost::is_rvalue_reference<ValueType&&>::value 
+            || boost::is_const< typename boost::remove_reference<ValueType>::type >::value,
+            "boost::any_cast shall not be used for getting nonconst references to temporary objects" 
+        );
+        return any_cast<ValueType&&>(operand);
+    }
+#endif
+
+
     // Note: The "unsafe" versions of any_cast are not part of the
     // public interface and may be removed at any time. They are
     // required where we know what type is stored in the any and can't
@@ -321,5 +381,9 @@ namespace boost
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 #endif

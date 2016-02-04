@@ -183,7 +183,11 @@ namespace boost
          legendre_p(int l, T x);
 #if !BOOST_WORKAROUND(BOOST_MSVC, <= 1310)
    template <class T, class Policy>
+<<<<<<< HEAD
    typename boost::enable_if_c<policies::is_policy<Policy>::value, typename tools::promote_args<T>::type>::type
+=======
+   typename tools::promote_args<T>::type
+>>>>>>> github/build-bot-2.1.x
          legendre_p(int l, T x, const Policy& pol);
 #endif
    template <class T>
@@ -191,7 +195,11 @@ namespace boost
          legendre_q(unsigned l, T x);
 #if !BOOST_WORKAROUND(BOOST_MSVC, <= 1310)
    template <class T, class Policy>
+<<<<<<< HEAD
    typename boost::enable_if_c<policies::is_policy<Policy>::value, typename tools::promote_args<T>::type>::type
+=======
+   typename tools::promote_args<T>::type
+>>>>>>> github/build-bot-2.1.x
          legendre_q(unsigned l, T x, const Policy& pol);
 #endif
    template <class T1, class T2, class T3>
@@ -777,6 +785,7 @@ namespace boost
    typename tools::promote_args<T>::type airy_bi_prime(T x);
 
    template <class T>
+<<<<<<< HEAD
    T airy_ai_zero(int m);
    template <class T, class Policy>
    T airy_ai_zero(int m, const Policy&);
@@ -784,16 +793,30 @@ namespace boost
    template <class OutputIterator>
    OutputIterator airy_ai_zero(
                      int start_index,
+=======
+   T airy_ai_zero(unsigned m);
+   template <class T, class Policy>
+   T airy_ai_zero(unsigned m, const Policy&);
+
+   template <class OutputIterator>
+   OutputIterator airy_ai_zero(
+                     unsigned start_index,
+>>>>>>> github/build-bot-2.1.x
                      unsigned number_of_zeros,
                      OutputIterator out_it);
    template <class OutputIterator, class Policy>
    OutputIterator airy_ai_zero(
+<<<<<<< HEAD
                      int start_index,
+=======
+                     unsigned start_index,
+>>>>>>> github/build-bot-2.1.x
                      unsigned number_of_zeros,
                      OutputIterator out_it,
                      const Policy&);
 
    template <class T>
+<<<<<<< HEAD
    T airy_bi_zero(int m);
    template <class T, class Policy>
    T airy_bi_zero(int m, const Policy&);
@@ -801,11 +824,24 @@ namespace boost
    template <class OutputIterator>
    OutputIterator airy_bi_zero(
                      int start_index,
+=======
+   T airy_bi_zero(unsigned m);
+   template <class T, class Policy>
+   T airy_bi_zero(unsigned m, const Policy&);
+
+   template <class OutputIterator>
+   OutputIterator airy_bi_zero(
+                     unsigned start_index,
+>>>>>>> github/build-bot-2.1.x
                      unsigned number_of_zeros,
                      OutputIterator out_it);
    template <class OutputIterator, class Policy>
    OutputIterator airy_bi_zero(
+<<<<<<< HEAD
                      int start_index,
+=======
+                     unsigned start_index,
+>>>>>>> github/build-bot-2.1.x
                      unsigned number_of_zeros,
                      OutputIterator out_it,
                      const Policy&);
@@ -979,6 +1015,7 @@ namespace boost
    typename tools::promote_args<T, U>::type nextafter(const T&, const U&, const Policy&);
    template <class T, class U>
    typename tools::promote_args<T, U>::type nextafter(const T&, const U&);
+<<<<<<< HEAD
    template <class T, class Policy>
    typename tools::promote_args<T>::type float_next(const T&, const Policy&);
    template <class T>
@@ -1034,6 +1071,24 @@ namespace boost
    OutputIterator tangent_t2n(const int start_index,
                                        const unsigned number_of_bernoullis_b2n,
                                        OutputIterator out_it);
+=======
+   template <class T, class Policy>
+   typename tools::promote_args<T>::type float_next(const T&, const Policy&);
+   template <class T>
+   typename tools::promote_args<T>::type float_next(const T&);
+   template <class T, class Policy>
+   typename tools::promote_args<T>::type float_prior(const T&, const Policy&);
+   template <class T>
+   typename tools::promote_args<T>::type float_prior(const T&);
+   template <class T, class U, class Policy>
+   typename tools::promote_args<T, U>::type float_distance(const T&, const U&, const Policy&);
+   template <class T, class U>
+   typename tools::promote_args<T, U>::type float_distance(const T&, const U&);
+   template <class T, class Policy>
+   typename tools::promote_args<T>::type float_advance(T val, int distance, const Policy& pol);
+   template <class T>
+   typename tools::promote_args<T>::type float_advance(const T& val, int distance);
+>>>>>>> github/build-bot-2.1.x
 
     } // namespace math
 } // namespace boost
@@ -1374,10 +1429,13 @@ namespace boost
    sph_neumann(unsigned v, T x){ return boost::math::sph_neumann(v, x, Policy()); }\
 \
    template <class T>\
+<<<<<<< HEAD
    inline typename boost::math::detail::bessel_traits<T, T, Policy >::result_type \
    sph_neumann_prime(unsigned v, T x){ return boost::math::sph_neumann_prime(v, x, Policy()); }\
 \
    template <class T>\
+=======
+>>>>>>> github/build-bot-2.1.x
    inline typename boost::math::detail::bessel_traits<T, T, Policy >::result_type cyl_bessel_j_zero(T v, int m)\
    { return boost::math::cyl_bessel_j_zero(v, m, Policy()); }\
 \
@@ -1562,6 +1620,7 @@ template <class OutputIterator, class T>\
    OutputIterator airy_bi_zero(int start_index, unsigned number_of_zeros, OutputIterator out_it)\
    { return boost::math::airy_bi_zero<T>(start_index, number_of_zeros, out_it, Policy()); }\
    \
+<<<<<<< HEAD
    template <class T>\
    T bernoulli_b2n(const int i)\
    { return boost::math::bernoulli_b2n<T>(i, Policy()); }\
@@ -1576,6 +1635,8 @@ template <class OutputIterator, class T>\
    OutputIterator tangent_t2n(int start_index, unsigned number_of_bernoullis_b2n, OutputIterator out_it)\
    { return boost::math::tangent_t2n<T>(start_index, number_of_bernoullis_b2n, out_it, Policy()); }\
    \
+=======
+>>>>>>> github/build-bot-2.1.x
 
 
 

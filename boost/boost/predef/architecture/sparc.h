@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -34,10 +38,17 @@ http://www.boost.org/LICENSE_1_0.txt)
 #   if !defined(BOOST_ARCH_SPARC) && defined(__sparcv9)
 #       define BOOST_ARCH_SPARC BOOST_VERSION_NUMBER(9,0,0)
 #   endif
+<<<<<<< HEAD
 #   if !defined(BOOST_ARCH_SPARC) && defined(__sparcv8)
 #       define BOOST_ARCH_SPARC BOOST_VERSION_NUMBER(8,0,0)
 #   endif
 #   if !defined(BOOST_ARCH_SPARC)
+=======
+#   if !defined(BOOST_ARCH_SPARC) &&  defined(__sparcv8)
+#       define BOOST_ARCH_SPARC BOOST_VERSION_NUMBER(8,0,0)
+#   endif
+#   if !defined(BOOST_ARCH_SPARC) &&
+>>>>>>> github/build-bot-2.1.x
 #       define BOOST_ARCH_SPARC BOOST_VERSION_NUMBER_AVAILABLE
 #   endif
 #endif
@@ -48,7 +59,15 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #define BOOST_ARCH_SPARC_NAME "SPARC"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_ARCH_SPARC,BOOST_ARCH_SPARC_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_ARCH_SPARC,BOOST_ARCH_SPARC_NAME)
+
+
+#endif
+>>>>>>> github/build-bot-2.1.x

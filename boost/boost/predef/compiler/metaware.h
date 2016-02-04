@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -26,6 +30,7 @@ MetaWare High C/C++ compiler.
 #define BOOST_COMP_HIGHC BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
 #if defined(__HIGHC__)
+<<<<<<< HEAD
 #   define BOOST_COMP_HIGHC_DETECTION BOOST_VERSION_NUMBER_AVAILABLE
 #endif
 
@@ -38,10 +43,19 @@ MetaWare High C/C++ compiler.
 #   endif
 #   define BOOST_COMP_HIGHC_AVAILABLE
 #   include <boost/predef/detail/comp_detected.h>
+=======
+#   undef BOOST_COMP_HIGHC
+#   define BOOST_COMP_HIGHC BOOST_VERSION_NUMBER_AVAILABLE
+#endif
+
+#if BOOST_COMP_HIGHC
+#   define BOOST_COMP_HIGHC_AVAILABLE
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #define BOOST_COMP_HIGHC_NAME "MetaWare High C/C++"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
@@ -50,4 +64,10 @@ BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_HIGHC,BOOST_COMP_HIGHC_NAME)
 #ifdef BOOST_COMP_HIGHC_EMULATED
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_HIGHC_EMULATED,BOOST_COMP_HIGHC_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_HIGHC,BOOST_COMP_HIGHC_NAME)
+
+
+>>>>>>> github/build-bot-2.1.x
 #endif

@@ -145,6 +145,7 @@ protected:
     BOOST_PP_REPEAT_FROM_TO( 1, BOOST_PP_INC(BOOST_BASE_FROM_MEMBER_MAX_ARITY),
      BOOST_PRIVATE_CTR_DEF, _ )
 #endif
+<<<<<<< HEAD
 
 };  // boost::base_from_member
 
@@ -158,6 +159,8 @@ protected:
         BOOST_NOEXCEPT
         : member( x )
         {}
+=======
+>>>>>>> github/build-bot-2.1.x
 
 };  // boost::base_from_member
 

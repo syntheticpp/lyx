@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -53,7 +57,15 @@ Version number available as major, minor, and patch.
 
 #define BOOST_LIB_STD_STLPORT_NAME "STLport"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_LIB_STD_STLPORT,BOOST_LIB_STD_STLPORT_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_LIB_STD_STLPORT,BOOST_LIB_STD_STLPORT_NAME)
+
+
+#endif
+>>>>>>> github/build-bot-2.1.x

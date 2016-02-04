@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2011-2015
+=======
+Copyright Redshift Software Inc. 2011-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -52,6 +56,13 @@ Specifically the defined versions are:
 
 #define BOOST_LANG_STDCPP_NAME "Standard C++"
 
+<<<<<<< HEAD
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_LANG_STDCPP,BOOST_LANG_STDCPP_NAME)
+
+
+>>>>>>> github/build-bot-2.1.x
 /*`
 [heading `BOOST_LANG_STDCPPCLI`]
 
@@ -84,6 +95,13 @@ If available, the year of the standard is detected as YYYY.MM.1 from the Epoc da
 
 #define BOOST_LANG_STDCPPCLI_NAME "Standard C++/CLI"
 
+<<<<<<< HEAD
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_LANG_STDCPPCLI,BOOST_LANG_STDCPPCLI_NAME)
+
+
+>>>>>>> github/build-bot-2.1.x
 /*`
 [heading `BOOST_LANG_STDECPP`]
 
@@ -109,6 +127,7 @@ If available, the year of the standard is detected as YYYY.MM.1 from the Epoc da
 
 #define BOOST_LANG_STDECPP_NAME "Standard Embedded C++"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
@@ -119,3 +138,10 @@ BOOST_PREDEF_DECLARE_TEST(BOOST_LANG_STDCPPCLI,BOOST_LANG_STDCPPCLI_NAME)
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_LANG_STDECPP,BOOST_LANG_STDECPP_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_LANG_STDECPP,BOOST_LANG_STDECPP_NAME)
+
+
+#endif
+>>>>>>> github/build-bot-2.1.x

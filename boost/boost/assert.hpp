@@ -41,7 +41,11 @@
 
 #elif defined(BOOST_ENABLE_ASSERT_HANDLER) || ( defined(BOOST_ENABLE_ASSERT_DEBUG_HANDLER) && !defined(NDEBUG) )
 
+<<<<<<< HEAD
 #include <boost/config.hpp> // for BOOST_LIKELY
+=======
+#include <boost/config.hpp>
+>>>>>>> github/build-bot-2.1.x
 #include <boost/current_function.hpp>
 
 namespace boost
@@ -50,8 +54,14 @@ namespace boost
     void assertion_failed_msg(char const * expr, char const * msg, char const * function, char const * file, long line); // user defined
 } // namespace boost
 
+<<<<<<< HEAD
 #define BOOST_ASSERT(expr) (BOOST_LIKELY(!!(expr))? ((void)0): ::boost::assertion_failed(#expr, BOOST_CURRENT_FUNCTION, __FILE__, __LINE__))
 #define BOOST_ASSERT_MSG(expr, msg) (BOOST_LIKELY(!!(expr))? ((void)0): ::boost::assertion_failed_msg(#expr, msg, BOOST_CURRENT_FUNCTION, __FILE__, __LINE__))
+=======
+#define BOOST_ASSERT(expr) (BOOST_LIKELY(!!(expr)) \
+  ? ((void)0) \
+  : ::boost::assertion_failed(#expr, BOOST_CURRENT_FUNCTION, __FILE__, __LINE__))
+>>>>>>> github/build-bot-2.1.x
 
 #else
 
@@ -63,6 +73,79 @@ namespace boost
 # define BOOST_ASSERT_IS_VOID
 #endif
 
+<<<<<<< HEAD
+=======
+//--------------------------------------------------------------------------------------//
+//                                   BOOST_ASSERT_MSG                                   //
+//--------------------------------------------------------------------------------------//
+
+# undef BOOST_ASSERT_MSG
+
+#if defined(BOOST_DISABLE_ASSERTS) || defined(NDEBUG)
+
+  #define BOOST_ASSERT_MSG(expr, msg) ((void)0)
+
+#elif defined(BOOST_ENABLE_ASSERT_HANDLER)
+
+  #include <boost/config.hpp>
+  #include <boost/current_function.hpp>
+
+  namespace boost
+  {
+    void assertion_failed_msg(char const * expr, char const * msg,
+                              char const * function, char const * file, long line); // user defined
+  } // namespace boost
+
+  #define BOOST_ASSERT_MSG(expr, msg) (BOOST_LIKELY(!!(expr)) \
+    ? ((void)0) \
+    : ::boost::assertion_failed_msg(#expr, msg, BOOST_CURRENT_FUNCTION, __FILE__, __LINE__))
+
+#else
+  #ifndef BOOST_ASSERT_HPP
+    #define BOOST_ASSERT_HPP
+    #include <cstdlib>
+    #include <iostream>
+    #include <boost/config.hpp>
+    #include <boost/current_function.hpp>
+
+    //  IDE's like Visual Studio perform better if output goes to std::cout or
+    //  some other stream, so allow user to configure output stream:
+    #ifndef BOOST_ASSERT_MSG_OSTREAM
+    # define BOOST_ASSERT_MSG_OSTREAM std::cerr
+    #endif
+
+    namespace boost
+    {
+      namespace assertion
+      {
+        namespace detail
+        {
+          // Note: The template is needed to make the function non-inline and avoid linking errors
+          template< typename CharT >
+          BOOST_NOINLINE void assertion_failed_msg(CharT const * expr, char const * msg, char const * function,
+            char const * file, long line)
+          {
+            BOOST_ASSERT_MSG_OSTREAM
+              << "***** Internal Program Error - assertion (" << expr << ") failed in "
+              << function << ":\n"
+              << file << '(' << line << "): " << msg << std::endl;
+#ifdef UNDER_CE
+            // The Windows CE CRT library does not have abort() so use exit(-1) instead.
+            std::exit(-1);
+#else
+            std::abort();
+#endif
+          }
+        } // detail
+      } // assertion
+    } // detail
+  #endif
+
+  #define BOOST_ASSERT_MSG(expr, msg) (BOOST_LIKELY(!!(expr)) \
+    ? ((void)0) \
+    : ::boost::assertion::detail::assertion_failed_msg(#expr, msg, \
+          BOOST_CURRENT_FUNCTION, __FILE__, __LINE__))
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 //

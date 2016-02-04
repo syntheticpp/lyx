@@ -45,9 +45,26 @@ set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true)
 # Supress regeneration
 set(CMAKE_SUPPRESS_REGENERATION FALSE)
 
+if(LYX_XMINGW)
+    set(CMAKE_SYSTEM_NAME Windows)
+    set(TOOLNAME ${LYX_XMINGW})
+    set(TOOLCHAIN "${TOOLNAME}-")
+    set(CMAKE_C_COMPILER   "${TOOLCHAIN}gcc"     CACHE PATH "Mingw C compiler" FORCE)
+    set(CMAKE_CXX_COMPILER "${TOOLCHAIN}g++"     CACHE PATH "Mingw C++ compiler" FORCE)
+    set(CMAKE_RC_COMPILER  "${TOOLCHAIN}windres" CACHE PATH "Mingw rc compiler" FORCE)
+
+    set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM BOTH)
+    set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+    set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+endif()
+
 if(NOT help AND NOT HELP)
 	# 'project' triggers the searching for a compiler
 	project(${LYX_PROJECT})
+endif()
+
+if(MINGW OR LYX_XMINGW)
+    set(GNUWIN32_DIR ${CMAKE_SOURCE_DIR}/development/3rdparty/win_x86)
 endif()
 
 if(UNIX)
@@ -148,7 +165,7 @@ endif()
 
 if(LYX_INSTALL)
 	set(LYX_NLS ON)
-	if (WIN32)
+        if(WIN32 AND NOT MINGW)
 		set(LYX_HUNSPELL ON)
 	endif()
 	if(LYX_CONSOLE MATCHES "FORCE")
@@ -169,6 +186,7 @@ if(LYX_MERGE_FILES)
 else()
 	set(LYX_MERGE_REBUILD OFF)
 endif()
+
 
 if(LYX_DEPENDENCIES_DOWNLOAD)
 	message(STATUS)
@@ -193,6 +211,10 @@ if(LYX_DEPENDENCIES_DOWNLOAD)
 		endif()
 	endforeach()
 	set(GNUWIN32_DIR ${LYX_DEPENDENCIES_DIR}/deps20)
+    if(MSVC12)
+        # handle msvc10 bug
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /vd2")
+    endif()
 endif()
 
 
@@ -482,6 +504,12 @@ if(LYX_CXX_FLAGS_EXTRA)
 	endforeach()
 endif()
 
+
+if(LYX_XMINGW)
+    set(QT_MINGW_DIR ${LYX_QT4} CACHE PATH "Qt for Mingw" FORCE)
+    list(APPEND CMAKE_FIND_ROOT_PATH ${QT_MINGW_DIR} ${GNUWIN32_DIR})
+endif()
+
 if(LYX_USE_QT MATCHES "QT5")
   find_package(Qt5Core REQUIRED)
   if (Qt5Core_FOUND)
@@ -549,6 +577,7 @@ if(LYX_NLS)
 		endforeach()
 	endif()
 endif()
+
 
 find_package(ICONV REQUIRED)
 find_package(ZLIB REQUIRED)
@@ -777,7 +806,9 @@ if(LYX_INSTALL)
 	if(${LYX_PYTHON_EXECUTABLE} MATCHES "-NOTFOUND")
 		message(STATUS "Python required to create doc!")
 	else()
+		if(UNIX)
 			add_subdirectory(${LYX_CMAKE_DIR}/man "${TOP_BINARY_DIR}/man")
+		endif()
 		add_subdirectory(${LYX_CMAKE_DIR}/doc "${TOP_BINARY_DIR}/doc")
 	endif()
 	if(NOT(LYX_BUNDLE AND APPLE))

@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -33,6 +37,7 @@ Version number available as major, minor, and patch.
 #define BOOST_COMP_MWERKS BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
 #if defined(__MWERKS__) || defined(__CWCC__)
+<<<<<<< HEAD
 #   if !defined(BOOST_COMP_MWERKS_DETECTION) && defined(__CWCC__)
 #       define BOOST_COMP_MWERKS_DETECTION BOOST_PREDEF_MAKE_0X_VRPP(__CWCC__)
 #   endif
@@ -62,10 +67,36 @@ Version number available as major, minor, and patch.
 #   endif
 #   define BOOST_COMP_MWERKS_AVAILABLE
 #   include <boost/predef/detail/comp_detected.h>
+=======
+#   undef BOOST_COMP_MWERKS
+#   if !defined(BOOST_COMP_MWERKS) && defined(__CWCC__)
+#       define BOOST_COMP_MWERKS BOOST_PREDEF_MAKE_0X_VRPP(__CWCC__)
+#   endif
+#   if !defined(BOOST_COMP_MWERKS) && (__MWERKS__ >= 0x4200)
+#       define BOOST_COMP_MWERKS BOOST_PREDEF_MAKE_0X_VRPP(__MWERKS__)
+#   endif
+#   if !defined(BOOST_COMP_MWERKS) && (__MWERKS__ >= 0x3204) // note the "skip": 04->9.3
+#       define BOOST_COMP_MWERKS BOOST_VERSION_NUMBER(9,(__MWERKS__)%100-1,0)
+#   endif
+#   if !defined(BOOST_COMP_MWERKS) && (__MWERKS__ >= 0x3200)
+#       define BOOST_COMP_MWERKS BOOST_VERSION_NUMBER(9,(__MWERKS__)%100,0)
+#   endif
+#   if !defined(BOOST_COMP_MWERKS) && (__MWERKS__ >= 0x3000)
+#       define BOOST_COMP_MWERKS BOOST_VERSION_NUMBER(8,(__MWERKS__)%100,0)
+#   endif
+#   if !defined(BOOST_COMP_MWERKS)
+#       define BOOST_COMP_MWERKS BOOST_VERSION_NUMBER_AVAILABLE
+#   endif
+#endif
+
+#if BOOST_COMP_MWERKS
+#   define BOOST_COMP_MWERKS_AVAILABLE
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #define BOOST_COMP_MWERKS_NAME "Metrowerks CodeWarrior"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
@@ -74,4 +105,10 @@ BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_MWERKS,BOOST_COMP_MWERKS_NAME)
 #ifdef BOOST_COMP_MWERKS_EMULATED
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_MWERKS_EMULATED,BOOST_COMP_MWERKS_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_MWERKS,BOOST_COMP_MWERKS_NAME)
+
+
+>>>>>>> github/build-bot-2.1.x
 #endif

@@ -58,16 +58,20 @@
 #define BOOST_NO_COMPLETE_VALUE_INITIALIZATION
 #define BOOST_NO_CXX11_CHAR32_T
 #define BOOST_NO_CXX11_CHAR16_T
+<<<<<<< HEAD
 #define BOOST_NO_CXX11_REF_QUALIFIERS
 #define BOOST_NO_CXX11_FINAL
 
 
+=======
+#define BOOST_NO_CXX11_ALIGNAS
+>>>>>>> github/build-bot-2.1.x
 //#define BOOST_BCB_PARTIAL_SPECIALIZATION_BUG
 #define BOOST_MATH_DISABLE_STD_FPCLASSIFY
 //#define BOOST_HAS_FPCLASSIFY
 
-#define BOOST_SP_USE_PTHREADS 
-#define BOOST_AC_USE_PTHREADS 
+#define BOOST_SP_USE_PTHREADS
+#define BOOST_AC_USE_PTHREADS
 
 /* everything that follows is working around what are thought to be
  * compiler shortcomings.  Revist all of these regularly.

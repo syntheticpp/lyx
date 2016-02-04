@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -29,6 +33,7 @@ Version number available as major, minor, and patch.
  */
 
 #if defined(__COMO__)
+<<<<<<< HEAD
 #   if !defined(BOOST_COMP_COMO_DETECTION) && defined(__COMO_VERSION__)
 #       define BOOST_COMP_COMO_DETECTION BOOST_PREDEF_MAKE_0X_VRP(__COMO_VERSION__)
 #   endif
@@ -46,10 +51,24 @@ Version number available as major, minor, and patch.
 #   endif
 #   define BOOST_COMP_COMO_AVAILABLE
 #   include <boost/predef/detail/comp_detected.h>
+=======
+#   undef BOOST_COMP_COMO
+#   if !defined(BOOST_COMP_COMO) && defined(__CONO_VERSION__)
+#       define BOOST_COMP_COMO BOOST_PREDEF_MAKE_0X_VRP(__COMO_VERSION__)
+#   endif
+#   if !defined(BOOST_COMP_COMO)
+#       define BOOST_COMP_COMO BOOST_VERSION_NUMBER_AVAILABLE
+#   endif
+#endif
+
+#if BOOST_COMP_COMO
+#   define BOOST_COMP_COMO_AVAILABLE
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #define BOOST_COMP_COMO_NAME "Comeau C++"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
@@ -58,4 +77,10 @@ BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_COMO,BOOST_COMP_COMO_NAME)
 #ifdef BOOST_COMP_COMO_EMULATED
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_COMO_EMULATED,BOOST_COMP_COMO_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_COMO,BOOST_COMP_COMO_NAME)
+
+
+>>>>>>> github/build-bot-2.1.x
 #endif

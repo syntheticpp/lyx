@@ -122,7 +122,10 @@
 #define BOOST_NO_CXX11_ALIGNAS
 #define BOOST_NO_CXX11_TRAILING_RESULT_TYPES
 #define BOOST_NO_CXX11_INLINE_NAMESPACES
+<<<<<<< HEAD
 #define BOOST_NO_CXX11_REF_QUALIFIERS
+=======
+>>>>>>> github/build-bot-2.1.x
 
 /*
   See https://forums13.itrc.hp.com/service/forums/questionanswer.do?threadId=1443331 and

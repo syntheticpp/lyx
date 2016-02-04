@@ -11,8 +11,13 @@
 #ifndef BOOST_CONTAINER_CONTAINER_FWD_HPP
 #define BOOST_CONTAINER_CONTAINER_FWD_HPP
 
+<<<<<<< HEAD
 #ifndef BOOST_CONFIG_HPP
 #  include <boost/config.hpp>
+=======
+#if defined(_MSC_VER)
+#  pragma once
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #if defined(BOOST_HAS_PRAGMA_ONCE)
@@ -274,6 +279,7 @@ struct ordered_unique_range_t
 //! guaranteed to be ordered and unique
 static const ordered_unique_range_t ordered_unique_range = ordered_unique_range_t();
 
+<<<<<<< HEAD
 //! Type used to tag that the inserted values
 //! should be default initialized
 struct default_init_t
@@ -292,6 +298,17 @@ struct value_init_t
 //! Value used to tag that the inserted values
 //! should be value initialized
 static const value_init_t value_init = value_init_t();
+=======
+//! Type used to tag that the input range is
+//! guaranteed to be ordered and unique
+struct default_init_t
+{};
+
+//! Value used to tag that the input range is
+//! guaranteed to be ordered and unique
+static const default_init_t default_init = default_init_t();
+/// @cond
+>>>>>>> github/build-bot-2.1.x
 
 namespace container_detail_really_deep_namespace {
 

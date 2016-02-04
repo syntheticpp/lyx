@@ -123,6 +123,7 @@
 //  #   define BOOST_ALIGNMENT_OF(T) __alignof(T)
 
 #   if defined(_MSC_VER) && (_MSC_VER >= 1700)
+<<<<<<< HEAD
 #       define BOOST_HAS_TRIVIAL_MOVE_CONSTRUCTOR(T) ((__has_trivial_move_constructor(T) || boost::is_pod<T>::value) && ! ::boost::is_volatile<T>::value && ! ::boost::is_reference<T>::value)
 #       define BOOST_HAS_TRIVIAL_MOVE_ASSIGN(T) ((__has_trivial_move_assign(T) || boost::is_pod<T>::value) && ! ::boost::is_const<T>::value && !::boost::is_volatile<T>::value && ! ::boost::is_reference<T>::value)
 #   endif
@@ -135,6 +136,12 @@
 #   define BOOST_IS_NOTHROW_MOVE_ASSIGN(T) (__is_nothrow_assignable(T&, T&&))
 #   define BOOST_IS_NOTHROW_MOVE_CONSTRUCT(T) (__is_nothrow_constructible(T, T&&))
 #endif
+=======
+#       define BOOST_HAS_TRIVIAL_MOVE_CONSTRUCTOR(T) ((__has_trivial_move_constructor(T) || ::boost::is_pod<T>::value) && !::boost::is_volatile<T>::value)
+#       define BOOST_HAS_TRIVIAL_MOVE_ASSIGN(T) ((__has_trivial_move_assign(T) || ::boost::is_pod<T>::value) && ! ::boost::is_const<T>::value && !::boost::is_volatile<T>::value)
+#   endif
+
+>>>>>>> github/build-bot-2.1.x
 #   define BOOST_HAS_TYPE_TRAITS_INTRINSICS
 #endif
 
@@ -220,6 +227,7 @@
 #     define BOOST_IS_POLYMORPHIC(T) __is_polymorphic(T)
 #   endif
 #   if __has_feature(has_trivial_move_constructor)
+<<<<<<< HEAD
 #     define BOOST_HAS_TRIVIAL_MOVE_CONSTRUCTOR(T) (__has_trivial_move_constructor(T)  && is_constructible<T, T&&>::value && !::boost::is_volatile<T>::value)
 #   endif
 #   if __has_feature(has_trivial_move_assign)
@@ -234,6 +242,14 @@
 #   if __has_feature(is_final)
 #     define BOOST_IS_FINAL(T) __is_final(T)
 #   endif
+=======
+#     define BOOST_HAS_TRIVIAL_MOVE_CONSTRUCTOR(T) __has_trivial_move_constructor(T)
+#   endif
+#   if __has_feature(has_trivial_move_assign)
+#     define BOOST_HAS_TRIVIAL_MOVE_ASSIGN(T) __has_trivial_move_assign(T)
+#   endif
+#   define BOOST_ALIGNMENT_OF(T) __alignof(T)
+>>>>>>> github/build-bot-2.1.x
 
 #   define BOOST_HAS_TYPE_TRAITS_INTRINSICS
 #endif

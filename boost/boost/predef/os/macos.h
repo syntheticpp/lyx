@@ -1,6 +1,10 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
 Copyright Franz Detro 2014
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -9,6 +13,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #ifndef BOOST_PREDEF_OS_MACOS_H
 #define BOOST_PREDEF_OS_MACOS_H
 
+<<<<<<< HEAD
 /* Special case: iOS will define the same predefs as MacOS, and additionally
  '__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__'. We can guard against that,
  but only if we detect iOS first. Hence we will force include iOS detection
@@ -16,6 +21,8 @@ http://www.boost.org/LICENSE_1_0.txt)
  */
 #include <boost/predef/os/ios.h>
 
+=======
+>>>>>>> github/build-bot-2.1.x
 #include <boost/predef/version_number.h>
 #include <boost/predef/make.h>
 
@@ -39,7 +46,11 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #define BOOST_OS_MACOS BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
+<<<<<<< HEAD
 #if !defined(BOOST_PREDEF_DETAIL_OS_DETECTED) && ( \
+=======
+#if !BOOST_PREDEF_DETAIL_OS_DETECTED && ( \
+>>>>>>> github/build-bot-2.1.x
     defined(macintosh) || defined(Macintosh) || \
     (defined(__APPLE__) && defined(__MACH__)) \
     )
@@ -59,7 +70,15 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #define BOOST_OS_MACOS_NAME "Mac OS"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_OS_MACOS,BOOST_OS_MACOS_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_OS_MACOS,BOOST_OS_MACOS_NAME)
+
+
+#endif
+>>>>>>> github/build-bot-2.1.x

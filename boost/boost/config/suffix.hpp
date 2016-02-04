@@ -603,6 +603,7 @@ namespace std{ using ::type_info; }
 #    define BOOST_NOINLINE __declspec(noinline)
 #  elif defined(__GNUC__) && __GNUC__ > 3
      // Clang also defines __GNUC__ (as 4)
+<<<<<<< HEAD
 #    if defined(__CUDACC__)
        // nvcc doesn't always parse __noinline__, 
        // see: https://svn.boost.org/trac/boost/ticket/9392
@@ -610,11 +611,15 @@ namespace std{ using ::type_info; }
 #    else
 #      define BOOST_NOINLINE __attribute__ ((__noinline__))
 #    endif
+=======
+#    define BOOST_NOINLINE __attribute__ ((__noinline__))
+>>>>>>> github/build-bot-2.1.x
 #  else
 #    define BOOST_NOINLINE
 #  endif
 #endif
 
+<<<<<<< HEAD
 // BOOST_NORETURN ---------------------------------------------//
 // Macro to use before a function declaration/definition to designate
 // the function as not returning normally (i.e. with a return statement
@@ -630,6 +635,8 @@ namespace std{ using ::type_info; }
 #  endif
 #endif
 
+=======
+>>>>>>> github/build-bot-2.1.x
 // Branch prediction hints
 // These macros are intended to wrap conditional expressions that yield true or false
 //
@@ -658,11 +665,14 @@ namespace std{ using ::type_info; }
 #  define BOOST_ALIGNMENT(x)
 #endif
 
+<<<<<<< HEAD
 // Lack of non-public defaulted functions is implied by the lack of any defaulted functions
 #if !defined(BOOST_NO_CXX11_NON_PUBLIC_DEFAULTED_FUNCTIONS) && defined(BOOST_NO_CXX11_DEFAULTED_FUNCTIONS)
 #  define BOOST_NO_CXX11_NON_PUBLIC_DEFAULTED_FUNCTIONS
 #endif
 
+=======
+>>>>>>> github/build-bot-2.1.x
 // Defaulted and deleted function declaration helpers
 // These macros are intended to be inside a class definition.
 // BOOST_DEFAULTED_FUNCTION accepts the function declaration and its

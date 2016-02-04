@@ -666,7 +666,11 @@ bool perl_matcher<BidiIterator, Allocator, traits>::match_set_repeat()
       BidiIterator end = position;
       // Move end forward by "desired", preferably without using distance or advance if we can
       // as these can be slow for some iterator types.
+<<<<<<< HEAD
       std::size_t len = (desired == (std::numeric_limits<std::size_t>::max)()) ? 0u : ::boost::BOOST_REGEX_DETAIL_NS::distance(position, last);
+=======
+      std::size_t len = (desired == (std::numeric_limits<std::size_t>::max)()) ? 0u : ::boost::re_detail::distance(position, last);
+>>>>>>> github/build-bot-2.1.x
       if(desired >= len)
          end = last;
       else
@@ -762,7 +766,11 @@ bool perl_matcher<BidiIterator, Allocator, traits>::match_long_set_repeat()
       BidiIterator end = position;
       // Move end forward by "desired", preferably without using distance or advance if we can
       // as these can be slow for some iterator types.
+<<<<<<< HEAD
       std::size_t len = (desired == (std::numeric_limits<std::size_t>::max)()) ? 0u : ::boost::BOOST_REGEX_DETAIL_NS::distance(position, last);
+=======
+      std::size_t len = (desired == (std::numeric_limits<std::size_t>::max)()) ? 0u : ::boost::re_detail::distance(position, last);
+>>>>>>> github/build-bot-2.1.x
       if(desired >= len)
          end = last;
       else

@@ -10,9 +10,15 @@
 //
 // See http://www.boost.org/libs/mpl for documentation.
 
+<<<<<<< HEAD
 // $Id$
 // $Date$
 // $Revision$
+=======
+// $Id: assert.hpp 86514 2013-10-29 13:15:03Z bemandawes $
+// $Date: 2013-10-29 06:15:03 -0700 (Tue, 29 Oct 2013) $
+// $Revision: 86514 $
+>>>>>>> github/build-bot-2.1.x
 
 #include <boost/mpl/not.hpp>
 #include <boost/mpl/aux_/value_wknd.hpp>

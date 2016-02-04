@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -29,6 +33,7 @@ Version number available as major, and minor.
 #define BOOST_COMP_WATCOM BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
 #if defined(__WATCOMC__)
+<<<<<<< HEAD
 #   define BOOST_COMP_WATCOM_DETECTION BOOST_PREDEF_MAKE_10_VVRR(__WATCOMC__)
 #endif
 
@@ -41,10 +46,19 @@ Version number available as major, and minor.
 #   endif
 #   define BOOST_COMP_WATCOM_AVAILABLE
 #   include <boost/predef/detail/comp_detected.h>
+=======
+#   undef BOOST_COMP_WATCOM
+#   define BOOST_COMP_WATCOM BOOST_PREDEF_MAKE_10_VVRR(__WATCOMC__)
+#endif
+
+#if BOOST_COMP_WATCOM
+#   define BOOST_COMP_WATCOM_AVAILABLE
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #define BOOST_COMP_WATCOM_NAME "Watcom C++"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
@@ -53,4 +67,10 @@ BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_WATCOM,BOOST_COMP_WATCOM_NAME)
 #ifdef BOOST_COMP_WATCOM_EMULATED
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_WATCOM_EMULATED,BOOST_COMP_WATCOM_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_WATCOM,BOOST_COMP_WATCOM_NAME)
+
+
+>>>>>>> github/build-bot-2.1.x
 #endif

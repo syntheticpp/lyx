@@ -68,10 +68,41 @@
 #endif
 
 
+<<<<<<< HEAD
+=======
+// MSVC (including the latest checked version) has not yet completely
+// implemented value-initialization, as is reported:
+// "VC++ does not value-initialize members of derived classes without
+// user-declared constructor", reported in 2009 by Sylvester Hesp:
+// https://connect.microsoft.com/VisualStudio/feedback/details/484295
+// "Presence of copy constructor breaks member class initialization",
+// reported in 2009 by Alex Vakulenko:
+// https://connect.microsoft.com/VisualStudio/feedback/details/499606
+// "Value-initialization in new-expression", reported in 2005 by
+// Pavel Kuznetsov (MetaCommunications Engineering):
+// https://connect.microsoft.com/VisualStudio/feedback/details/100744
+// See also: http://www.boost.org/libs/utility/value_init.htm#compiler_issues
+// (Niels Dekker, LKEB, May 2010)
+#  define BOOST_NO_COMPLETE_VALUE_INITIALIZATION
+
+>>>>>>> github/build-bot-2.1.x
 #ifndef _NATIVE_WCHAR_T_DEFINED
 #  define BOOST_NO_INTRINSIC_WCHAR_T
 #endif
 
+<<<<<<< HEAD
+=======
+#if defined(_WIN32_WCE) || defined(UNDER_CE)
+#  define BOOST_NO_SWPRINTF
+#endif
+
+// we have ThreadEx or GetSystemTimeAsFileTime unless we're running WindowsCE
+#if !defined(_WIN32_WCE) && !defined(UNDER_CE)
+#  define BOOST_HAS_THREADEX
+#  define BOOST_HAS_GETSYSTEMTIMEASFILETIME
+#endif
+
+>>>>>>> github/build-bot-2.1.x
 //
 // check for exception handling support:
 #if !defined(_CPPUNWIND) && !defined(BOOST_NO_EXCEPTIONS)
@@ -155,6 +186,7 @@
 #  define BOOST_NO_CXX11_TRAILING_RESULT_TYPES
 #  define BOOST_NO_CXX11_VARIADIC_TEMPLATES
 #  define BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX
+<<<<<<< HEAD
 #  define BOOST_NO_CXX11_DECLTYPE_N3276
 #endif
 
@@ -212,6 +244,22 @@
 #if !defined(__cpp_variable_templates) || (__cpp_variable_templates < 201304)
 #  define BOOST_NO_CXX14_VARIABLE_TEMPLATES
 #endif
+=======
+#endif
+
+// C++11 features not supported by any versions
+#define BOOST_NO_CXX11_CHAR16_T
+#define BOOST_NO_CXX11_CHAR32_T
+#define BOOST_NO_CXX11_CONSTEXPR
+#define BOOST_NO_CXX11_DECLTYPE_N3276
+#define BOOST_NO_CXX11_NOEXCEPT
+#define BOOST_NO_CXX11_UNICODE_LITERALS
+#define BOOST_NO_SFINAE_EXPR
+#define BOOST_NO_TWO_PHASE_NAME_LOOKUP
+#define BOOST_NO_CXX11_USER_DEFINED_LITERALS
+#define BOOST_NO_CXX11_ALIGNAS
+#define BOOST_NO_CXX11_INLINE_NAMESPACES
+>>>>>>> github/build-bot-2.1.x
 
 //
 // prefix and suffix headers:
@@ -248,8 +296,11 @@
 #     define BOOST_COMPILER_VERSION evc11 
 #   elif _MSC_VER < 1900 
 #     define BOOST_COMPILER_VERSION evc12
+<<<<<<< HEAD
 #   elif _MSC_VER < 2000  
 #     define BOOST_COMPILER_VERSION evc14
+=======
+>>>>>>> github/build-bot-2.1.x
 #   else
 #      if defined(BOOST_ASSERT_CONFIG)
 #         error "Unknown EVC++ compiler version - please run the configure tests and report the results"
@@ -277,8 +328,11 @@
 #     define BOOST_COMPILER_VERSION 11.0
 #   elif _MSC_VER < 1900
 #     define BOOST_COMPILER_VERSION 12.0
+<<<<<<< HEAD
 #   elif _MSC_VER < 2000
 #     define BOOST_COMPILER_VERSION 14.0
+=======
+>>>>>>> github/build-bot-2.1.x
 #   else
 #     define BOOST_COMPILER_VERSION _MSC_VER
 #   endif
@@ -288,8 +342,13 @@
 #endif
 
 //
+<<<<<<< HEAD
 // last known and checked version is 19.00.23026 (VC++ 2015 RTM):
 #if (_MSC_VER > 1900)
+=======
+// last known and checked version is 18.00.20827.3 (VC12 RC, aka 2013 RC):
+#if (_MSC_VER > 1800 && _MSC_FULL_VER > 180020827)
+>>>>>>> github/build-bot-2.1.x
 #  if defined(BOOST_ASSERT_CONFIG)
 #     error "Unknown compiler version - please run the configure tests and report the results"
 #  else

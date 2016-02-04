@@ -95,6 +95,7 @@ public:
     {
     }
 
+<<<<<<< HEAD
     void * address() BOOST_NOEXCEPT
     {
         return storage_.data_;
@@ -163,6 +164,8 @@ public:
     {
     }
 
+=======
+>>>>>>> github/build-bot-2.1.x
     void * address() BOOST_NOEXCEPT
     {
         return storage_.data_;

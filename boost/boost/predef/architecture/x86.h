@@ -1,16 +1,29 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
 */
 
+<<<<<<< HEAD
 #include <boost/predef/architecture/x86/32.h>
 #include <boost/predef/architecture/x86/64.h>
 
 #ifndef BOOST_PREDEF_ARCHITECTURE_X86_H
 #define BOOST_PREDEF_ARCHITECTURE_X86_H
 
+=======
+#ifndef BOOST_PREDEF_ARCHITECTURE_X86_H
+#define BOOST_PREDEF_ARCHITECTURE_X86_H
+
+#include <boost/predef/architecture/x86/32.h>
+#include <boost/predef/architecture/x86/64.h>
+
+>>>>>>> github/build-bot-2.1.x
 /*`
 [heading `BOOST_ARCH_X86`]
 
@@ -32,7 +45,14 @@ a category to indicate that either `BOOST_ARCH_X86_32` or
 
 #define BOOST_ARCH_X86_NAME "Intel x86"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_ARCH_X86,BOOST_ARCH_X86_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_ARCH_X86,BOOST_ARCH_X86_NAME)
+
+#endif
+>>>>>>> github/build-bot-2.1.x

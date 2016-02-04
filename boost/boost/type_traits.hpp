@@ -77,8 +77,11 @@
 #include "boost/type_traits/has_trivial_destructor.hpp"
 #include "boost/type_traits/has_trivial_move_assign.hpp"
 #include "boost/type_traits/has_trivial_move_constructor.hpp"
+<<<<<<< HEAD
 #include "boost/type_traits/has_unary_minus.hpp"
 #include "boost/type_traits/has_unary_plus.hpp"
+=======
+>>>>>>> github/build-bot-2.1.x
 #include "boost/type_traits/has_virtual_destructor.hpp"
 
 #include "boost/type_traits/integral_constant.hpp"
@@ -95,10 +98,14 @@
 #include "boost/type_traits/is_const.hpp"
 #include "boost/type_traits/is_constructible.hpp"
 #include "boost/type_traits/is_convertible.hpp"
+<<<<<<< HEAD
 #include "boost/type_traits/is_copy_assignable.hpp"
 #include "boost/type_traits/is_copy_constructible.hpp"
 #include "boost/type_traits/is_default_constructible.hpp"
 #include "boost/type_traits/is_destructible.hpp"
+=======
+#include "boost/type_traits/is_copy_constructible.hpp"
+>>>>>>> github/build-bot-2.1.x
 #include "boost/type_traits/is_empty.hpp"
 #include "boost/type_traits/is_enum.hpp"
 #include "boost/type_traits/is_final.hpp"

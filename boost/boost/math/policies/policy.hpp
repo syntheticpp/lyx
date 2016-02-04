@@ -837,7 +837,11 @@ struct precision
 #ifdef BOOST_MATH_USE_FLOAT128
 
 template <class Policy>
+<<<<<<< HEAD
 struct precision<BOOST_MATH_FLOAT128_TYPE, Policy>
+=======
+struct precision<__float128, Policy>
+>>>>>>> github/build-bot-2.1.x
 {
    typedef mpl::int_<113> type;
 };

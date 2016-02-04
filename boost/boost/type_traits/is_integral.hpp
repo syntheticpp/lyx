@@ -81,6 +81,12 @@ template<> struct is_integral<char16_t> : public true_type{};
 #ifndef BOOST_NO_CXX11_CHAR32_T
 template<> struct is_integral<char32_t> : public true_type{};
 #endif
+#ifndef BOOST_NO_CXX11_CHAR16_T
+BOOST_TT_AUX_BOOL_TRAIT_CV_SPEC1(is_integral,char16_t,true)
+#endif
+#ifndef BOOST_NO_CXX11_CHAR32_T
+BOOST_TT_AUX_BOOL_TRAIT_CV_SPEC1(is_integral,char32_t,true)
+#endif
 
 #endif  // non-CodeGear implementation
 

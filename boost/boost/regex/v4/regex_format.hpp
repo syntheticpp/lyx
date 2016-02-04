@@ -1085,7 +1085,11 @@ struct format_functor_container
    OutputIter operator()(const Match& m, OutputIter i, boost::regex_constants::match_flag_type f, const Traits& t = Traits())
    {
       //typedef typename Match::char_type char_type;
+<<<<<<< HEAD
       return BOOST_REGEX_DETAIL_NS::regex_format_imp(i, m, func.begin(), func.end(), f, t);
+=======
+      return re_detail::regex_format_imp(i, m, func.begin(), func.end(), f, t);
+>>>>>>> github/build-bot-2.1.x
    }
 private:
    const Container& func;

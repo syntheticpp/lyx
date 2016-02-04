@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -59,7 +63,11 @@ of BSD. If the above variants is detected the corresponding macro is also set.]
 #define BOOST_OS_BSD BOOST_VERSION_NUMBER_NOT_AVAILABLE
 #endif
 
+<<<<<<< HEAD
 #if !defined(BOOST_PREDEF_DETAIL_OS_DETECTED) && ( \
+=======
+#if !BOOST_PREDEF_DETAIL_OS_DETECTED && ( \
+>>>>>>> github/build-bot-2.1.x
     defined(BSD) || \
     defined(_SYSTYPE_BSD) \
     )
@@ -89,6 +97,7 @@ of BSD. If the above variants is detected the corresponding macro is also set.]
 
 #define BOOST_OS_BSD_NAME "BSD"
 
+<<<<<<< HEAD
 #else
 
 #include <boost/predef/os/bsd/bsdi.h>
@@ -101,3 +110,9 @@ of BSD. If the above variants is detected the corresponding macro is also set.]
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_OS_BSD,BOOST_OS_BSD_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_OS_BSD,BOOST_OS_BSD_NAME)
+
+#endif
+>>>>>>> github/build-bot-2.1.x

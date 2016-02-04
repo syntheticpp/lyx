@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -26,7 +30,11 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #define BOOST_OS_LINUX BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
+<<<<<<< HEAD
 #if !defined(BOOST_PREDEF_DETAIL_OS_DETECTED) && ( \
+=======
+#if !BOOST_PREDEF_DETAIL_OS_DETECTED && ( \
+>>>>>>> github/build-bot-2.1.x
     defined(linux) || defined(__linux) \
     )
 #   undef BOOST_OS_LINUX
@@ -40,7 +48,15 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #define BOOST_OS_LINUX_NAME "Linux"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_OS_LINUX,BOOST_OS_LINUX_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_OS_LINUX,BOOST_OS_LINUX_NAME)
+
+
+#endif
+>>>>>>> github/build-bot-2.1.x

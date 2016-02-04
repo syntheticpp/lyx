@@ -18,7 +18,11 @@
 #include <boost/preprocessor/cat.hpp>
 #include <boost/mpl/has_xxx.hpp>
 
+<<<<<<< HEAD
 #if !defined(BOOST_MPL_CFG_NO_HAS_XXX)
+=======
+#ifdef BOOST_NO_PARTIAL_SPECIALIZATION_IMPLICIT_DEFAULT_ARGS
+>>>>>>> github/build-bot-2.1.x
 
 // Defines extract_some_typedef<T> which exposes T::some_typedef as
 // extract_some_typedef<T>::type if T::some_typedef exists. Otherwise

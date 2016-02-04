@@ -96,8 +96,13 @@
 #include <exception>
 #endif
 #include <typeinfo>
+<<<<<<< HEAD
 #if ( (!_HAS_EXCEPTIONS && !defined(__ghs__)) || (!_HAS_NAMESPACE && defined(__ghs__)) ) && !defined(__TI_COMPILER_VERSION__) && !defined(__VISUALDSPVERSION__)
 #  define BOOST_NO_STD_TYPEINFO
+=======
+#if ( (!_HAS_EXCEPTIONS && !defined(__ghs__)) || (!_HAS_NAMESPACE && defined(__ghs__)) ) && !defined(__TI_COMPILER_VERSION__)
+#  define BOOST_NO_STD_TYPEINFO    
+>>>>>>> github/build-bot-2.1.x
 #endif  
 
 //  C++0x headers implemented in 520 (as shipped by Microsoft)
@@ -141,6 +146,7 @@
 //
 #if !defined(_CPPLIB_VER) || _CPPLIB_VER < 610
 #  define BOOST_NO_CXX11_HDR_INITIALIZER_LIST
+<<<<<<< HEAD
 #  define BOOST_NO_CXX11_HDR_ATOMIC
 #  define BOOST_NO_CXX11_ALLOCATOR
 // 540 has std::align but it is not a conforming implementation
@@ -183,6 +189,8 @@
 #  if defined(_HAS_AUTO_PTR_ETC) && (_HAS_AUTO_PTR_ETC == 0)
 #    define BOOST_NO_AUTO_PTR
 #  endif
+=======
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #ifdef _CPPLIB_VER

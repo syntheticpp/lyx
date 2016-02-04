@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -32,6 +36,7 @@ Version number available as major, minor, and patch.
 
 #if defined(__MINGW32__) || defined(__MINGW64__)
 #   include <_mingw.h>
+<<<<<<< HEAD
 #   if !defined(BOOST_PLAT_MINGW_DETECTION) && (defined(__MINGW64_VERSION_MAJOR) && defined(__MINGW64_VERSION_MINOR))
 #       define BOOST_PLAT_MINGW_DETECTION \
             BOOST_VERSION_NUMBER(__MINGW64_VERSION_MAJOR,__MINGW64_VERSION_MINOR,0)
@@ -54,10 +59,29 @@ Version number available as major, minor, and patch.
 #       define BOOST_PLAT_MINGW BOOST_PLAT_MINGW_DETECTION
 #   endif
 #   include <boost/predef/detail/platform_detected.h>
+=======
+#   undef BOOST_PLAT_MINGW
+#   if !defined(BOOST_PLAT_MINGW) && (defined(__MINGW64_VERSION_MAJOR) && defined(__MINGW64_VERSION_MINOR))
+#       define BOOST_PLAT_MINGW \
+            BOOST_VERSION_NUMBER(__MINGW64_VERSION_MAJOR,__MINGW64_VERSION_MINOR,0)
+#   endif
+#   if !defined(BOOST_PLAT_MINGW) && (defined(__MINGW32_VERSION_MAJOR) && defined(__MINGW32_VERSION_MINOR))
+#       define BOOST_PLAT_MINGW \
+            BOOST_VERSION_NUMBER(__MINGW32_MAJOR_VERSION,__MINGW32_MINOR_VERSION,0)
+#   endif
+#   if !defined(BOOST_PLAT_MINGW)
+#       define BOOST_PLAT_MINGW BOOST_VERSION_NUMBER_AVAILABLE
+#   endif
+#endif
+
+#if BOOST_PLAT_MINGW
+#   define BOOST_PLAT_MINGW_AVAILABLE
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #define BOOST_PLAT_MINGW_NAME "MinGW"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
@@ -66,4 +90,10 @@ BOOST_PREDEF_DECLARE_TEST(BOOST_PLAT_MINGW,BOOST_PLAT_MINGW_NAME)
 #ifdef BOOST_PLAT_MINGW_EMULATED
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_PLAT_MINGW_EMULATED,BOOST_PLAT_MINGW_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_PLAT_MINGW,BOOST_PLAT_MINGW_NAME)
+
+
+>>>>>>> github/build-bot-2.1.x
 #endif

@@ -19,7 +19,6 @@
 #include <boost/cregex.hpp>
 #include <boost/current_function.hpp>
 #include <boost/function.hpp>
-#include <boost/iterator/indirect_iterator.hpp>
 #include <boost/optional.hpp>
 #include <boost/regex.hpp>
 #include <boost/scoped_array.hpp>

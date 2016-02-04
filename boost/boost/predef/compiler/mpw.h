@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -31,6 +35,7 @@ Version number available as major, and minor.
 #define BOOST_COMP_MPW BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
 #if defined(__MRC__) || defined(MPW_C) || defined(MPW_CPLUS)
+<<<<<<< HEAD
 #   if !defined(BOOST_COMP_MPW_DETECTION) && defined(__MRC__)
 #       define BOOST_COMP_MPW_DETECTION BOOST_PREDEF_MAKE_0X_VVRR(__MRC__)
 #   endif
@@ -48,10 +53,24 @@ Version number available as major, and minor.
 #   endif
 #   define BOOST_COMP_MPW_AVAILABLE
 #   include <boost/predef/detail/comp_detected.h>
+=======
+#   undef BOOST_COMP_MPW
+#   if !defined(BOOST_COMP_MPW) && defined(__MRC__)
+#       define BOOST_COMP_MPW BOOST_PREDEF_MAKE_0X_VVRR(__MRC__)
+#   endif
+#   if !defined(BOOST_COMP_MPW)
+#       define BOOST_COMP_MPW BOOST_VERSION_NUMBER_AVAILABLE
+#   endif
+#endif
+
+#if BOOST_COMP_MPW
+#   define BOOST_COMP_MPW_AVAILABLE
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #define BOOST_COMP_MPW_NAME "MPW C++"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
@@ -60,4 +79,10 @@ BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_MPW,BOOST_COMP_MPW_NAME)
 #ifdef BOOST_COMP_MPW_EMULATED
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_MPW_EMULATED,BOOST_COMP_MPW_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_MPW,BOOST_COMP_MPW_NAME)
+
+
+>>>>>>> github/build-bot-2.1.x
 #endif

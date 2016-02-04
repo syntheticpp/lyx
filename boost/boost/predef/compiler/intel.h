@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -33,6 +37,7 @@ Version number available as major, minor, and patch.
 
 #if defined(__INTEL_COMPILER) || defined(__ICL) || defined(__ICC) || \
     defined(__ECC)
+<<<<<<< HEAD
 #   if !defined(BOOST_COMP_INTEL_DETECTION) && defined(__INTEL_COMPILER)
 #       define BOOST_COMP_INTEL_DETECTION BOOST_PREDEF_MAKE_10_VRP(__INTEL_COMPILER)
 #   endif
@@ -50,10 +55,24 @@ Version number available as major, minor, and patch.
 #   endif
 #   define BOOST_COMP_INTEL_AVAILABLE
 #   include <boost/predef/detail/comp_detected.h>
+=======
+#   undef BOOST_COMP_INTEL
+#   if !defined(BOOST_COMP_INTEL) && defined(__INTEL_COMPILER)
+#       define BOOST_COMP_INTEL BOOST_PREDEF_MAKE_10_VRP(__INTEL_COMPILER)
+#   endif
+#   if !defined(BOOST_COMP_INTEL)
+#       define BOOST_COMP_INTEL BOOST_VERSION_NUMBER_AVAILABLE
+#   endif
+#endif
+
+#if BOOST_COMP_INTEL
+#   define BOOST_COMP_INTEL_AVAILABLE
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #define BOOST_COMP_INTEL_NAME "Intel C/C++"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
@@ -62,4 +81,10 @@ BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_INTEL,BOOST_COMP_INTEL_NAME)
 #ifdef BOOST_COMP_INTEL_EMULATED
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_INTEL_EMULATED,BOOST_COMP_INTEL_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_INTEL,BOOST_COMP_INTEL_NAME)
+
+
+>>>>>>> github/build-bot-2.1.x
 #endif

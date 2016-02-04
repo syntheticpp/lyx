@@ -156,16 +156,23 @@ BOOST_LIB_VERSION:    The Boost version, in the form x_y, for Boost version x.y.
      // vc11:
 #    define BOOST_LIB_TOOLSET "vc110"
 
+<<<<<<< HEAD
 #  elif defined(BOOST_MSVC) && (BOOST_MSVC < 1900)
+=======
+#  elif defined(BOOST_MSVC)
+>>>>>>> github/build-bot-2.1.x
 
      // vc12:
 #    define BOOST_LIB_TOOLSET "vc120"
 
+<<<<<<< HEAD
 # elif defined(BOOST_MSVC)
 
    // vc14:
 #  define BOOST_LIB_TOOLSET "vc140"
 
+=======
+>>>>>>> github/build-bot-2.1.x
 #  elif defined(__BORLANDC__)
 
      // CBuilder 6:

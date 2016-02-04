@@ -88,6 +88,7 @@
 #  define BOOST_INTEL_LINUX BOOST_INTEL
 #endif
 
+<<<<<<< HEAD
 #else
 
 #include "boost/config/compiler/common_edg.hpp"
@@ -134,6 +135,8 @@
 #  define BOOST_INTEL_LINUX BOOST_INTEL
 #endif
 
+=======
+>>>>>>> github/build-bot-2.1.x
 #if (BOOST_INTEL_CXX_VERSION <= 600)
 
 #  if defined(_MSC_VER) && (_MSC_VER <= 1300) // added check for <= VC 7 (Peter Dimov)
@@ -244,6 +247,7 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 #define BOOST_UNLIKELY(x) __builtin_expect(x, 0)
 #endif
 
+<<<<<<< HEAD
 // RTTI
 // __RTTI is the EDG macro
 // __INTEL_RTTI__ is the Intel macro
@@ -262,6 +266,8 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 
 #endif
 
+=======
+>>>>>>> github/build-bot-2.1.x
 //
 // versions check:
 // we don't support Intel prior to version 6.0:
@@ -289,7 +295,11 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 // (Niels Dekker, LKEB, May 2010)
 // Apparently Intel 12.1 (compiler version number 9999 !!) has the same issue (compiler regression).
 #if defined(__INTEL_COMPILER)
+<<<<<<< HEAD
 #  if (__INTEL_COMPILER <= 1110) || (__INTEL_COMPILER == 9999) || (defined(_WIN32) && (__INTEL_COMPILER < 1600))
+=======
+#  if (__INTEL_COMPILER <= 1110) || (__INTEL_COMPILER == 9999) || (defined(_WIN32) && (__INTEL_COMPILER < 1500))
+>>>>>>> github/build-bot-2.1.x
 #    define BOOST_NO_COMPLETE_VALUE_INITIALIZATION
 #  endif
 #endif
@@ -310,6 +320,7 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 // for a list of which features were implemented in which Intel releases.
 //
 #if defined(BOOST_INTEL_STDCXX0X)
+<<<<<<< HEAD
 // BOOST_NO_CXX11_CONSTEXPR:
 #if (BOOST_INTEL_CXX_VERSION >= 1500) && (!defined(BOOST_INTEL_GCC_VERSION) || (BOOST_INTEL_GCC_VERSION >= 40600)) && !defined(_MSC_VER)
 // Available in earlier Intel versions, but fail our tests:
@@ -494,6 +505,96 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 // A regression in Intel's compiler means that <tuple> seems to be broken in this release as well as <future> :
 #  define BOOST_NO_CXX11_HDR_FUTURE
 #  define BOOST_NO_CXX11_HDR_TUPLE
+=======
+#  undef  BOOST_NO_CXX11_STATIC_ASSERT
+//
+// These pass our test cases, but aren't officially supported according to:
+// http://software.intel.com/en-us/articles/c0x-features-supported-by-intel-c-compiler/
+//
+//#  undef  BOOST_NO_CXX11_LAMBDAS
+//#  undef  BOOST_NO_CXX11_LOCAL_CLASS_TEMPLATE_PARAMETERS
+//#  undef  BOOST_NO_CXX11_DECLTYPE
+//#  undef  BOOST_NO_CXX11_AUTO_DECLARATIONS
+//#  undef  BOOST_NO_CXX11_AUTO_MULTIDECLARATIONS
+#endif
+
+#if defined(BOOST_INTEL_STDCXX0X) && (BOOST_INTEL_CXX_VERSION >= 1200)
+//#  undef  BOOST_NO_CXX11_RVALUE_REFERENCES // Enabling this breaks Filesystem and Exception libraries
+//#  undef  BOOST_NO_CXX11_SCOPED_ENUMS  // doesn't really work!!
+#  undef  BOOST_NO_CXX11_DELETED_FUNCTIONS
+#  undef  BOOST_NO_CXX11_DEFAULTED_FUNCTIONS
+#  undef  BOOST_NO_CXX11_LAMBDAS
+#  undef  BOOST_NO_CXX11_LOCAL_CLASS_TEMPLATE_PARAMETERS
+#  undef  BOOST_NO_CXX11_DECLTYPE
+#  undef  BOOST_NO_CXX11_AUTO_DECLARATIONS
+#  undef  BOOST_NO_CXX11_AUTO_MULTIDECLARATIONS
+#  undef  BOOST_NO_CXX11_TRAILING_RESULT_TYPES
+#endif
+
+// icl Version 12.1.0.233 Build 20110811 and possibly some other builds
+// had an incorrect __INTEL_COMPILER value of 9999. Intel say this has been fixed.
+#if defined(BOOST_INTEL_STDCXX0X) && (BOOST_INTEL_CXX_VERSION > 1200)
+#  undef  BOOST_NO_CXX11_FUNCTION_TEMPLATE_DEFAULT_ARGS
+#  undef  BOOST_NO_CXX11_NULLPTR
+#  undef  BOOST_NO_CXX11_RVALUE_REFERENCES
+#  undef  BOOST_NO_SFINAE_EXPR
+#  undef  BOOST_NO_CXX11_TEMPLATE_ALIASES
+#  undef  BOOST_NO_CXX11_VARIADIC_TEMPLATES
+
+// http://software.intel.com/en-us/articles/c0x-features-supported-by-intel-c-compiler/
+// continues to list scoped enum support as "Partial"
+//#  undef  BOOST_NO_CXX11_SCOPED_ENUMS
+#endif
+#if defined(BOOST_INTEL_STDCXX0X) && (BOOST_INTEL_CXX_VERSION >= 1310) && !defined(_MSC_VER)
+#  undef BOOST_NO_CXX11_INLINE_NAMESPACES
+#  undef BOOST_NO_CXX11_FUNCTION_TEMPLATE_DEFAULT_ARGS
+// This one generates internal compiler errors in multiprecision, disabled for now:
+//#  undef BOOST_NO_CXX11_EXPLICIT_CONVERSION_OPERATORS  
+// This one generates errors when used with conditional exception specifications, for example in multiprecision:
+//#  undef BOOST_NO_CXX11_NOEXCEPT
+#  undef BOOST_NO_CXX11_RANGE_BASED_FOR
+#  undef BOOST_NO_CXX11_SCOPED_ENUMS
+#  undef BOOST_NO_CXX11_UNIFIED_INITIALIZATION_SYNTAX
+#endif
+#if (BOOST_INTEL_CXX_VERSION >= 1310)
+#  undef  BOOST_NO_SFINAE_EXPR
+#endif
+#if defined(BOOST_INTEL_STDCXX0X) && (BOOST_INTEL_CXX_VERSION >= 1400) && !defined(_MSC_VER)
+#  undef BOOST_NO_CXX11_UNICODE_LITERALS 
+#  undef BOOST_NO_CXX11_RAW_LITERALS 
+// This one generates errors when used with conditional exception specifications, for example in multiprecision:
+//#  undef BOOST_NO_CXX11_NOEXCEPT 
+// This breaks multiprecision:
+//#  undef BOOST_NO_CXX11_EXPLICIT_CONVERSION_OPERATORS 
+#  undef BOOST_NO_CXX11_HDR_THREAD 
+#  undef BOOST_NO_CXX11_CHAR32_T 
+#  undef BOOST_NO_CXX11_CHAR16_T
+#endif
+
+#if defined(BOOST_INTEL_STDCXX0X) && (BOOST_INTEL_CXX_VERSION <= 1310)
+#  define BOOST_NO_CXX11_HDR_FUTURE
+#  define BOOST_NO_CXX11_HDR_INITIALIZER_LIST
+#endif
+
+#if defined(BOOST_INTEL_STDCXX0X) && (BOOST_INTEL_CXX_VERSION == 1400)
+// A regression in Intel's compiler means that <tuple> seems to be broken in this release as well as <future> :
+#  define BOOST_NO_CXX11_HDR_FUTURE
+#  define BOOST_NO_CXX11_HDR_TUPLE
+#endif
+
+#if defined(_MSC_VER) && (_MSC_VER <= 1700)
+//
+// Although the Intel compiler is capable of supporting these, it appears not to in MSVC compatibility mode:
+//
+#  define  BOOST_NO_CXX11_HDR_INITIALIZER_LIST
+#  define  BOOST_NO_CXX11_VARIADIC_TEMPLATES
+#  define  BOOST_NO_CXX11_DELETED_FUNCTIONS
+#  define  BOOST_NO_CXX11_DEFAULTED_FUNCTIONS
+#  define  BOOST_NO_CXX11_TEMPLATE_ALIASES
+#  if(BOOST_INTEL_CXX_VERSION < 1310)
+#     define  BOOST_NO_CXX11_TRAILING_RESULT_TYPES
+#  endif
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #if (BOOST_INTEL_CXX_VERSION < 1200)
@@ -503,6 +604,7 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 #  define BOOST_NO_FENV_H
 #endif
 
+<<<<<<< HEAD
 // Intel 13.10 fails to access defaulted functions of a base class declared in private or protected sections,
 // producing the following errors:
 // error #453: protected function "..." (declared at ...") is not accessible through a "..." pointer or object
@@ -510,10 +612,13 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 #  define BOOST_NO_CXX11_NON_PUBLIC_DEFAULTED_FUNCTIONS
 #endif
 
+=======
+>>>>>>> github/build-bot-2.1.x
 #if defined(_MSC_VER) && (_MSC_VER >= 1600)
 #  define BOOST_HAS_STDINT_H
 #endif
 
+<<<<<<< HEAD
 #if defined(__LP64__) && defined(__GNUC__) && (BOOST_INTEL_CXX_VERSION >= 1310) && !defined(__CUDACC__)
 #  define BOOST_HAS_INT128
 #endif
@@ -522,6 +627,15 @@ template<> struct assert_intrinsic_wchar_t<unsigned short> {};
 //
 // last known and checked version:
 #if (BOOST_INTEL_CXX_VERSION > 1500)
+=======
+#if defined(__LP64__) && defined(__GNUC__) && (BOOST_INTEL_CXX_VERSION >= 1310)
+#  define BOOST_HAS_INT128
+#endif
+
+//
+// last known and checked version:
+#if (BOOST_INTEL_CXX_VERSION > 1310)
+>>>>>>> github/build-bot-2.1.x
 #  if defined(BOOST_ASSERT_CONFIG)
 #     error "Unknown compiler version - please run the configure tests and report the results"
 #  elif defined(_MSC_VER)

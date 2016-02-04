@@ -12,6 +12,7 @@
 #define BOOST_TT_IS_NOTHROW_MOVE_CONSTRUCTIBLE_HPP_INCLUDED
 
 #include <boost/config.hpp>
+<<<<<<< HEAD
 #include <boost/type_traits/intrinsics.hpp>
 #include <boost/type_traits/integral_constant.hpp>
 #include <boost/detail/workaround.hpp>
@@ -32,6 +33,25 @@ template <class T> struct is_nothrow_move_constructible<const volatile T> : publ
 #include <boost/utility/enable_if.hpp>
 
 namespace boost{ namespace detail{
+=======
+#include <boost/type_traits/has_trivial_move_constructor.hpp>
+#include <boost/type_traits/has_nothrow_copy.hpp>
+#include <boost/type_traits/is_array.hpp>
+#include <boost/type_traits/is_reference.hpp>
+#include <boost/type_traits/detail/ice_or.hpp>
+#include <boost/type_traits/detail/ice_and.hpp>
+#include <boost/utility/declval.hpp>
+#include <boost/utility/enable_if.hpp>
+
+// should be the last #include
+#include <boost/type_traits/detail/bool_trait_def.hpp>
+
+namespace boost {
+
+namespace detail{
+
+#ifndef BOOST_NO_CXX11_NOEXCEPT
+>>>>>>> github/build-bot-2.1.x
 
 template <class T, class Enable = void>
 struct false_or_cpp11_noexcept_move_constructible: public ::boost::false_type {};
@@ -43,6 +63,7 @@ struct false_or_cpp11_noexcept_move_constructible <
     > : public ::boost::integral_constant<bool, BOOST_NOEXCEPT_EXPR(T(::boost::declval<T>()))>
 {};
 
+<<<<<<< HEAD
 }
 
 template <class T> struct is_nothrow_move_constructible
@@ -79,8 +100,50 @@ template <> struct is_nothrow_move_constructible<void const volatile> : false_ty
 template <class T> struct is_nothrow_move_constructible<T&> : public ::boost::true_type{};
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
 template <class T> struct is_nothrow_move_constructible<T&&> : public ::boost::true_type{};
+=======
+template <class T>
+struct is_nothrow_move_constructible_imp{
+   BOOST_STATIC_CONSTANT(bool, value = 
+        (::boost::type_traits::ice_and<
+            ::boost::type_traits::ice_not< ::boost::is_volatile<T>::value >::value,
+            ::boost::type_traits::ice_not< ::boost::is_reference<T>::value >::value,
+            ::boost::detail::false_or_cpp11_noexcept_move_constructible<T>::value
+        >::value));
+};
+
+#else
+
+template <class T>
+struct is_nothrow_move_constructible_imp{
+    BOOST_STATIC_CONSTANT(bool, value =(
+        ::boost::type_traits::ice_and<
+            ::boost::type_traits::ice_or<
+                ::boost::has_trivial_move_constructor<T>::value,
+                ::boost::has_nothrow_copy<T>::value
+            >::value,
+            ::boost::type_traits::ice_not< ::boost::is_array<T>::value >::value
+        >::value));
+};
+
+#endif
+
+}
+
+BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_nothrow_move_constructible,T,::boost::detail::is_nothrow_move_constructible_imp<T>::value)
+
+BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_nothrow_move_constructible,void,false)
+#ifndef BOOST_NO_CV_VOID_SPECIALIZATIONS
+BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_nothrow_move_constructible,void const,false)
+BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_nothrow_move_constructible,void const volatile,false)
+BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_nothrow_move_constructible,void volatile,false)
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 } // namespace boost
 
+<<<<<<< HEAD
+=======
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
+
+>>>>>>> github/build-bot-2.1.x
 #endif // BOOST_TT_IS_NOTHROW_MOVE_CONSTRUCTIBLE_HPP_INCLUDED

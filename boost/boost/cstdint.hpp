@@ -374,7 +374,11 @@ namespace boost
     || (defined(_XOPEN_UNIX) && (_XOPEN_UNIX+0 > 0) && !defined(__UCLIBC__)) \
     || defined(__CYGWIN__) \
     || defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__) \
+<<<<<<< HEAD
     || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__DragonFly__) || defined(sun)
+=======
+    || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
+>>>>>>> github/build-bot-2.1.x
 
 namespace boost {
     using ::intptr_t;

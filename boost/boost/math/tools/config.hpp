@@ -265,6 +265,7 @@
 #  define BOOST_MATH_INT_VALUE_SUFFIX(RV, SUF) RV##SUF
 #endif
 //
+<<<<<<< HEAD
 // Test whether to support __float128, if we don't have quadmath.h then this can't currently work:
 //
 #ifndef BOOST_MATH_USE_FLOAT128
@@ -281,10 +282,16 @@
 //
 #if defined(_GLIBCXX_USE_FLOAT128) && defined(BOOST_GCC) && !defined(__STRICT_ANSI__) \
    && !defined(BOOST_MATH_DISABLE_FLOAT128) || defined(BOOST_MATH_USE_FLOAT128)
+=======
+// Test whether to support __float128:
+//
+#if defined(_GLIBCXX_USE_FLOAT128) && defined(BOOST_GCC) && !defined(__STRICT_ANSI__)
+>>>>>>> github/build-bot-2.1.x
 //
 // Only enable this when the compiler really is GCC as clang and probably 
 // intel too don't support __float128 yet :-(
 //
+<<<<<<< HEAD
 #ifndef BOOST_MATH_USE_FLOAT128
 #  define BOOST_MATH_USE_FLOAT128
 #endif
@@ -301,6 +308,10 @@
 #      define BOOST_MATH_FLOAT128_TYPE _Quad
 #  endif
 #endif
+=======
+#  define BOOST_MATH_USE_FLOAT128
+#endif
+>>>>>>> github/build-bot-2.1.x
 //
 // Check for WinCE with no iostream support:
 //

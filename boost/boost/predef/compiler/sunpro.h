@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -14,7 +18,11 @@ http://www.boost.org/LICENSE_1_0.txt)
 /*`
 [heading `BOOST_COMP_SUNPRO`]
 
+<<<<<<< HEAD
 [@http://en.wikipedia.org/wiki/Oracle_Solaris_Studio Oracle Solaris Studio] compiler.
+=======
+[@http://en.wikipedia.org/wiki/Sun_Studio_%28software%29 Sun Studio] compiler.
+>>>>>>> github/build-bot-2.1.x
 Version number available as major, minor, and patch.
 
 [table
@@ -25,14 +33,18 @@ Version number available as major, minor, and patch.
 
     [[`__SUNPRO_CC`] [V.R.P]]
     [[`__SUNPRO_C`] [V.R.P]]
+<<<<<<< HEAD
     [[`__SUNPRO_CC`] [VV.RR.P]]
     [[`__SUNPRO_C`] [VV.RR.P]]
+=======
+>>>>>>> github/build-bot-2.1.x
     ]
  */
 
 #define BOOST_COMP_SUNPRO BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
 #if defined(__SUNPRO_CC) || defined(__SUNPRO_C)
+<<<<<<< HEAD
 #   if !defined(BOOST_COMP_SUNPRO_DETECTION) && defined(__SUNPRO_CC)
 #       if (__SUNPRO_CC < 0x5100)
 #           define BOOST_COMP_SUNPRO_DETECTION BOOST_PREDEF_MAKE_0X_VRP(__SUNPRO_CC)
@@ -66,11 +78,34 @@ Version number available as major, minor, and patch.
 #define BOOST_COMP_SUNPRO_NAME "Oracle Solaris Studio"
 
 #endif
+=======
+#   undef BOOST_COMP_SUNPRO
+#   if !defined(BOOST_COMP_SUNPRO) && defined(__SUNPRO_CC)
+#       define BOOST_COMP_SUNPRO BOOST_PREDEF_MAKE_0X_VRP(__SUNPRO_CC)
+#   endif
+#   if !defined(BOOST_COMP_SUNPRO) && defined(__SUNPRO_C)
+#       define BOOST_COMP_SUNPRO BOOST_PREDEF_MAKE_0X_VRP(__SUNPRO_C)
+#   endif
+#   if !defined(BOOST_COMP_SUNPRO)
+#       define BOOST_COMP_SUNPRO BOOST_VERSION_NUMBER_AVAILABLE
+#   endif
+#endif
+
+#if BOOST_COMP_SUNPRO
+#   define BOOST_COMP_SUNPRO_AVAILABLE
+#endif
+
+#define BOOST_COMP_SUNPRO_NAME "Sun Studio"
+>>>>>>> github/build-bot-2.1.x
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_SUNPRO,BOOST_COMP_SUNPRO_NAME)
 
+<<<<<<< HEAD
 #ifdef BOOST_COMP_SUNPRO_EMULATED
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_COMP_SUNPRO_EMULATED,BOOST_COMP_SUNPRO_NAME)
+=======
+
+>>>>>>> github/build-bot-2.1.x
 #endif

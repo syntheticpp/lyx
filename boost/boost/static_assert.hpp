@@ -30,7 +30,11 @@
 #  ifndef BOOST_NO_CXX11_VARIADIC_MACROS
 #     define BOOST_STATIC_ASSERT_MSG( ... ) static_assert(__VA_ARGS__)
 #  else
+<<<<<<< HEAD
 #     define BOOST_STATIC_ASSERT_MSG( B, Msg ) static_assert( B, Msg )
+=======
+#     define BOOST_STATIC_ASSERT_MSG( B, Msg ) BOOST_STATIC_ASSERT( B )
+>>>>>>> github/build-bot-2.1.x
 #  endif
 #else
 #     define BOOST_STATIC_ASSERT_MSG( B, Msg ) BOOST_STATIC_ASSERT( B )
@@ -57,12 +61,29 @@
 #  else
 #     define BOOST_STATIC_ASSERT_BOOL_CAST( x ) ((x) == 0 ? false : true)
 #  endif
+<<<<<<< HEAD
 #else
 #  ifndef BOOST_NO_CXX11_VARIADIC_MACROS
 #     define BOOST_STATIC_ASSERT_BOOL_CAST( ... ) (bool)(__VA_ARGS__)
 #  else
 #     define BOOST_STATIC_ASSERT_BOOL_CAST(x) (bool)(x)
 #  endif
+=======
+#else
+#  ifndef BOOST_NO_CXX11_VARIADIC_MACROS
+#     define BOOST_STATIC_ASSERT_BOOL_CAST( ... ) (bool)(__VA_ARGS__)
+#  else
+#     define BOOST_STATIC_ASSERT_BOOL_CAST(x) (bool)(x)
+#  endif
+#endif
+//
+// If the compiler warns about unused typedefs then enable this:
+//
+#if defined(__GNUC__) && ((__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 7)))
+#  define BOOST_STATIC_ASSERT_UNUSED_ATTRIBUTE __attribute__((unused))
+#else
+#  define BOOST_STATIC_ASSERT_UNUSED_ATTRIBUTE
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #ifndef BOOST_NO_CXX11_STATIC_ASSERT
@@ -112,13 +133,28 @@ template<int x> struct static_assert_test{};
 #if defined(BOOST_MSVC) && defined(BOOST_NO_CXX11_VARIADIC_MACROS)
 #define BOOST_STATIC_ASSERT( B ) \
    typedef ::boost::static_assert_test<\
+<<<<<<< HEAD
       sizeof(::boost::STATIC_ASSERTION_FAILURE< BOOST_STATIC_ASSERT_BOOL_CAST ( B ) >)>\
          BOOST_JOIN(boost_static_assert_typedef_, __COUNTER__)
+#elif defined(BOOST_MSVC)
+#define BOOST_STATIC_ASSERT(...) \
+=======
+      sizeof(::boost::STATIC_ASSERTION_FAILURE< (bool)( B ) >)\
+      > boost_static_assert_typedef_
+#elif defined(BOOST_MSVC) && defined(BOOST_NO_CXX11_VARIADIC_MACROS)
+#define BOOST_STATIC_ASSERT( B ) \
+>>>>>>> github/build-bot-2.1.x
+   typedef ::boost::static_assert_test<\
+      sizeof(::boost::STATIC_ASSERTION_FAILURE< BOOST_STATIC_ASSERT_BOOL_CAST (__VA_ARGS__) >)>\
+         BOOST_JOIN(boost_static_assert_typedef_, __COUNTER__)
+<<<<<<< HEAD
+=======
 #elif defined(BOOST_MSVC)
 #define BOOST_STATIC_ASSERT(...) \
    typedef ::boost::static_assert_test<\
       sizeof(::boost::STATIC_ASSERTION_FAILURE< BOOST_STATIC_ASSERT_BOOL_CAST (__VA_ARGS__) >)>\
          BOOST_JOIN(boost_static_assert_typedef_, __COUNTER__)
+>>>>>>> github/build-bot-2.1.x
 #elif (defined(BOOST_INTEL_CXX_VERSION) || defined(BOOST_SA_GCC_WORKAROUND))  && defined(BOOST_NO_CXX11_VARIADIC_MACROS)
 // agurt 15/sep/02: a special care is needed to force Intel C++ issue an error 
 // instead of warning in case of failure
@@ -152,12 +188,20 @@ template<int x> struct static_assert_test{};
 #     define BOOST_STATIC_ASSERT( ... ) \
          typedef ::boost::static_assert_test<\
             sizeof(::boost::STATIC_ASSERTION_FAILURE< BOOST_STATIC_ASSERT_BOOL_CAST( __VA_ARGS__ ) >)>\
+<<<<<<< HEAD
                BOOST_JOIN(boost_static_assert_typedef_, __LINE__) BOOST_ATTRIBUTE_UNUSED
+=======
+               BOOST_JOIN(boost_static_assert_typedef_, __LINE__) BOOST_STATIC_ASSERT_UNUSED_ATTRIBUTE
+>>>>>>> github/build-bot-2.1.x
 #  else
 #     define BOOST_STATIC_ASSERT( B ) \
          typedef ::boost::static_assert_test<\
             sizeof(::boost::STATIC_ASSERTION_FAILURE< BOOST_STATIC_ASSERT_BOOL_CAST( B ) >)>\
+<<<<<<< HEAD
                BOOST_JOIN(boost_static_assert_typedef_, __LINE__) BOOST_ATTRIBUTE_UNUSED
+=======
+               BOOST_JOIN(boost_static_assert_typedef_, __LINE__) BOOST_STATIC_ASSERT_UNUSED_ATTRIBUTE
+>>>>>>> github/build-bot-2.1.x
 #  endif
 #endif
 

@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -28,14 +32,25 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #define BOOST_OS_UNIX BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
+<<<<<<< HEAD
 #if defined(unix) || defined(__unix) || \
     defined(_XOPEN_SOURCE) || defined(_POSIX_SOURCE)
+=======
+#if !BOOST_PREDEF_DETAIL_OS_DETECTED && ( \
+    defined(unix) || defined(__unix) || \
+    defined(_XOPEN_SOURCE) || defined(_POSIX_SOURCE) \
+    )
+>>>>>>> github/build-bot-2.1.x
 #   undef BOOST_OS_UNIX
 #   define BOOST_OS_UNIX BOOST_VERSION_NUMBER_AVAILABLE
 #endif
 
 #if BOOST_OS_UNIX
 #   define BOOST_OS_UNIX_AVAILABLE
+<<<<<<< HEAD
+=======
+#   include <boost/predef/detail/os_detected.h>
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #define BOOST_OS_UNIX_NAME "Unix Environment"
@@ -63,14 +78,27 @@ http://www.boost.org/LICENSE_1_0.txt)
 #   define BOOST_OS_SVR4 BOOST_VERSION_NUMBER_AVAILABLE
 #endif
 
+<<<<<<< HEAD
 #if BOOST_OS_SVR4
 #   define BOOST_OS_SVR4_AVAILABLE
+=======
+#if BOOST_ARCH_ALPHA
+#   define _AVAILABLE
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #define BOOST_OS_SVR4_NAME "SVR4 Environment"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_OS_UNIX,BOOST_OS_UNIX_NAME)
 BOOST_PREDEF_DECLARE_TEST(BOOST_OS_SVR4,BOOST_OS_SVR4_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_OS_UNIX,BOOST_OS_UNIX_NAME)
+BOOST_PREDEF_DECLARE_TEST(BOOST_OS_SVR4,BOOST_OS_SVR4_NAME)
+
+#endif
+>>>>>>> github/build-bot-2.1.x

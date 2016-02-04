@@ -129,6 +129,7 @@
 #define BOOST_NO_CXX11_ALIGNAS
 #define BOOST_NO_CXX11_TRAILING_RESULT_TYPES
 #define BOOST_NO_CXX11_INLINE_NAMESPACES
+<<<<<<< HEAD
 #define BOOST_NO_CXX11_REF_QUALIFIERS
 #define BOOST_NO_CXX11_FINAL
 
@@ -160,3 +161,5 @@
 #if !defined(__cpp_variable_templates) || (__cpp_variable_templates < 201304)
 #  define BOOST_NO_CXX14_VARIABLE_TEMPLATES
 #endif
+=======
+>>>>>>> github/build-bot-2.1.x

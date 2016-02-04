@@ -39,8 +39,12 @@
 //  Intel
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/intel.hpp"
 
+<<<<<<< HEAD
 #elif defined __clang__ && !defined(__CUDACC__) && !defined(__ibmxl__)
 // when using clang and cuda at same time, you want to appear as gcc
+=======
+#elif defined __clang__
+>>>>>>> github/build-bot-2.1.x
 //  Clang C++ emulates GCC, so it has to appear early.
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/clang.hpp"
 
@@ -48,7 +52,11 @@
 //  Digital Mars C++
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/digitalmars.hpp"
 
+<<<<<<< HEAD
 # elif defined(__GNUC__) && !defined(__ibmxl__)
+=======
+# elif defined __GNUC__
+>>>>>>> github/build-bot-2.1.x
 //  GNU C++:
 #   define BOOST_COMPILER_CONFIG "boost/config/compiler/gcc.hpp"
 

@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2008-2015
+=======
+Copyright Redshift Software, Inc. 2008-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -42,6 +46,12 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #define BOOST_ARCH_RS6000_NAME "RS/6000"
 
+<<<<<<< HEAD
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_ARCH_RS6000,BOOST_ARCH_RS6000_NAME)
+
+>>>>>>> github/build-bot-2.1.x
 #define BOOST_ARCH_PWR BOOST_ARCH_RS6000
 
 #if BOOST_ARCH_PWR
@@ -51,6 +61,9 @@ http://www.boost.org/LICENSE_1_0.txt)
 #define BOOST_ARCH_PWR_NAME BOOST_ARCH_RS6000_NAME
 
 #endif
+<<<<<<< HEAD
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_ARCH_RS6000,BOOST_ARCH_RS6000_NAME)
+=======
+>>>>>>> github/build-bot-2.1.x

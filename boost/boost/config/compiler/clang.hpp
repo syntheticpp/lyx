@@ -10,6 +10,7 @@
 
 #define BOOST_HAS_PRAGMA_ONCE
 
+<<<<<<< HEAD
 // Detecting `-fms-extension` compiler flag assuming that _MSC_VER defined when that flag is used.
 #if defined (_MSC_VER) && (__clang_major__ > 3 || (__clang_major__ == 3 && __clang_minor__ >= 4))
 #   define BOOST_HAS_PRAGMA_DETECT_MISMATCH
@@ -27,6 +28,8 @@
 #define __has_attribute(x) 0
 #endif
 
+=======
+>>>>>>> github/build-bot-2.1.x
 #if !__has_feature(cxx_exceptions) && !defined(BOOST_NO_EXCEPTIONS)
 #  define BOOST_NO_EXCEPTIONS
 #endif
@@ -195,7 +198,11 @@
 #  define BOOST_NO_CXX11_USER_DEFINED_LITERALS
 #endif
 
+<<<<<<< HEAD
 #if !__has_feature(cxx_alignas)
+=======
+#if !(__has_feature(cxx_alignas) || __has_extension(cxx_alignas))
+>>>>>>> github/build-bot-2.1.x
 #  define BOOST_NO_CXX11_ALIGNAS
 #endif
 
@@ -207,6 +214,7 @@
 #  define BOOST_NO_CXX11_INLINE_NAMESPACES
 #endif
 
+<<<<<<< HEAD
 #if !__has_feature(cxx_override_control)
 #  define BOOST_NO_CXX11_FINAL
 #endif
@@ -269,6 +277,10 @@
 
 // Clang has supported the 'unused' attribute since the first release.
 #define BOOST_ATTRIBUTE_UNUSED __attribute__((__unused__))
+=======
+// Clang always supports variadic macros
+// Clang always supports extern templates
+>>>>>>> github/build-bot-2.1.x
 
 #ifndef BOOST_COMPILER
 #  define BOOST_COMPILER "Clang version " __clang_version__

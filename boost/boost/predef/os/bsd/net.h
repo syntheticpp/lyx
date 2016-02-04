@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
 Copyright Rene Rivera 2012-2015
+=======
+Copyright Redshift Software, Inc. 2012-2013
+>>>>>>> github/build-bot-2.1.x
 Distributed under the Boost Software License, Version 1.0.
 (See accompanying file LICENSE_1_0.txt or copy at
 http://www.boost.org/LICENSE_1_0.txt)
@@ -31,7 +35,11 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #define BOOST_OS_BSD_NET BOOST_VERSION_NUMBER_NOT_AVAILABLE
 
+<<<<<<< HEAD
 #if !defined(BOOST_PREDEF_DETAIL_OS_DETECTED) && ( \
+=======
+#if !BOOST_PREDEF_DETAIL_OS_DETECTED && ( \
+>>>>>>> github/build-bot-2.1.x
     defined(__NETBSD__) || defined(__NetBSD__) \
     )
 #   ifndef BOOST_OS_BSD_AVAILABLE
@@ -78,7 +86,14 @@ http://www.boost.org/LICENSE_1_0.txt)
 
 #define BOOST_OS_BSD_NET_NAME "DragonFly BSD"
 
+<<<<<<< HEAD
 #endif
 
 #include <boost/predef/detail/test.h>
 BOOST_PREDEF_DECLARE_TEST(BOOST_OS_BSD_NET,BOOST_OS_BSD_NET_NAME)
+=======
+#include <boost/predef/detail/test.h>
+BOOST_PREDEF_DECLARE_TEST(BOOST_OS_BSD_NET,BOOST_OS_BSD_NET_NAME)
+
+#endif
+>>>>>>> github/build-bot-2.1.x

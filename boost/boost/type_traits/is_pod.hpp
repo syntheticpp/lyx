@@ -49,7 +49,16 @@ template<> struct is_pod<void const volatile> : public true_type{};
 template<> struct is_pod<void volatile> : public true_type{};
 #endif
 
+<<<<<<< HEAD
 template<class T> struct is_POD : public is_pod<T>{};
+=======
+} // namespace detail
+
+BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_pod,T,::boost::detail::is_pod_impl<T>::value)
+// is_POD is the old depricated name for this trait, do not use this as it may
+// be removed in future without warning!!
+BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_POD,T,::boost::is_pod<T>::value)
+>>>>>>> github/build-bot-2.1.x
 
 } // namespace boost
 

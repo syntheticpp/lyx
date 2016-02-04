@@ -129,7 +129,7 @@ if(APPLE)
     lyx_install(${TOP_SRC_DIR}/development/MacOSX . qt.conf   .)
 endif()
 
-install(PROGRAMS ${TOP_SRC_DIR}/lib/scripts/listerrors DESTINATION scripts)
+install(PROGRAMS ${TOP_SRC_DIR}/lib/scripts/listerrors DESTINATION ${LYX_DATA_SUBDIR}/scripts)
 
 if(UNIX)
   set(program_suffix ${PROGRAM_SUFFIX})

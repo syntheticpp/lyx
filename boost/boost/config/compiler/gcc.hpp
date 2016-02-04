@@ -16,6 +16,7 @@
 //
 // Define BOOST_GCC so we know this is "real" GCC and not some pretender:
 //
+<<<<<<< HEAD
 #define BOOST_GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
 #if !defined(__CUDACC__)
 #define BOOST_GCC BOOST_GCC_VERSION
@@ -23,6 +24,10 @@
 
 #if defined(__GXX_EXPERIMENTAL_CXX0X__) || (__cplusplus >= 201103L)
 #  define BOOST_GCC_CXX11
+=======
+#if !defined(__CUDACC__)
+#define BOOST_GCC (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #if __GNUC__ == 3
@@ -47,11 +52,19 @@
 #endif
 
 // GCC prior to 3.4 had #pragma once too but it didn't work well with filesystem links
+<<<<<<< HEAD
 #if BOOST_GCC_VERSION >= 30400
 #define BOOST_HAS_PRAGMA_ONCE
 #endif
 
 #if BOOST_GCC_VERSION < 40400
+=======
+#if __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 4)
+#define BOOST_HAS_PRAGMA_ONCE
+#endif
+
+#if __GNUC__ < 4 || ( __GNUC__ == 4 && __GNUC_MINOR__ < 4 )
+>>>>>>> github/build-bot-2.1.x
 // Previous versions of GCC did not completely implement value-initialization:
 // GCC Bug 30111, "Value-initialization of POD base class doesn't initialize
 // members", reported by Jonathan Wakely in 2006,
@@ -132,6 +145,7 @@
 
 //
 // Recent GCC versions have __int128 when in 64-bit mode.
+<<<<<<< HEAD
 //
 // We disable this if the compiler is really nvcc as it
 // doesn't actually support __int128 as of CUDA_VERSION=5000
@@ -140,6 +154,16 @@
 // Only re-enable this for nvcc if you're absolutely sure
 // of the circumstances under which it's supported:
 //
+=======
+//
+// We disable this if the compiler is really nvcc as it
+// doesn't actually support __int128 as of CUDA_VERSION=5000
+// even though it defines __SIZEOF_INT128__.
+// See https://svn.boost.org/trac/boost/ticket/8048
+// Only re-enable this for nvcc if you're absolutely sure
+// of the circumstances under which it's supported:
+//
+>>>>>>> github/build-bot-2.1.x
 #if defined(__SIZEOF_INT128__) && !defined(__CUDACC__)
 #  define BOOST_HAS_INT128
 #endif
@@ -172,6 +196,17 @@
 #  define BOOST_NO_CXX11_FUNCTION_TEMPLATE_DEFAULT_ARGS
 #  define BOOST_NO_CXX11_RVALUE_REFERENCES
 #  define BOOST_NO_CXX11_STATIC_ASSERT
+<<<<<<< HEAD
+=======
+
+// Variadic templates compiler:
+//   http://www.generic-programming.org/~dgregor/cpp/variadic-templates.html
+#  if defined(__VARIADIC_TEMPLATES) || (__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 4) && defined(__GXX_EXPERIMENTAL_CXX0X__))
+#    define BOOST_HAS_VARIADIC_TMPL
+#  else
+#    define BOOST_NO_CXX11_VARIADIC_TEMPLATES
+#  endif
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 // C++0x features in 4.4.n and later
@@ -186,7 +221,10 @@
 #  define BOOST_NO_CXX11_DELETED_FUNCTIONS
 #  define BOOST_NO_CXX11_TRAILING_RESULT_TYPES
 #  define BOOST_NO_CXX11_INLINE_NAMESPACES
+<<<<<<< HEAD
 #  define BOOST_NO_CXX11_VARIADIC_TEMPLATES
+=======
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #if BOOST_GCC_VERSION < 40500
@@ -194,7 +232,11 @@
 #endif
 
 // GCC 4.5 forbids declaration of defaulted functions in private or protected sections
+<<<<<<< HEAD
 #if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ == 5) || !defined(BOOST_GCC_CXX11)
+=======
+#if !defined(BOOST_NO_CXX11_DEFAULTED_FUNCTIONS) && (__GNUC__ == 4 && __GNUC_MINOR__ <= 5)
+>>>>>>> github/build-bot-2.1.x
 #  define BOOST_NO_CXX11_NON_PUBLIC_DEFAULTED_FUNCTIONS
 #endif
 
@@ -228,6 +270,7 @@
 
 // C++0x features in 4.7.n and later
 //
+<<<<<<< HEAD
 #if (BOOST_GCC_VERSION < 40700) || !defined(BOOST_GCC_CXX11)
 #  define BOOST_NO_CXX11_FINAL
 #  define BOOST_NO_CXX11_TEMPLATE_ALIASES
@@ -282,6 +325,23 @@
 // __builtin_unreachable:
 #if BOOST_GCC_VERSION >= 40800
 #define BOOST_UNREACHABLE_RETURN(x) __builtin_unreachable();
+=======
+#if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 7) || !defined(__GXX_EXPERIMENTAL_CXX0X__)
+#  define BOOST_NO_CXX11_TEMPLATE_ALIASES
+#  define BOOST_NO_CXX11_USER_DEFINED_LITERALS
+#endif
+
+// C++0x features in 4.8.n and later
+//
+#if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 8) || !defined(__GXX_EXPERIMENTAL_CXX0X__)
+#  define BOOST_NO_CXX11_ALIGNAS
+#endif
+
+// C++0x features in 4.8.1 and later
+//
+#if (__GNUC__*10000 + __GNUC_MINOR__*100 + __GNUC_PATCHLEVEL__ < 40801) || !defined(__GXX_EXPERIMENTAL_CXX0X__)
+#  define BOOST_NO_CXX11_DECLTYPE_N3276
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 #ifndef BOOST_COMPILER
@@ -297,7 +357,11 @@
 
 // versions check:
 // we don't know gcc prior to version 3.30:
+<<<<<<< HEAD
 #if (BOOST_GCC_VERSION< 30300)
+=======
+#if (__GNUC__ < 3) || (__GNUC__ == 3 && (__GNUC_MINOR__ < 3))
+>>>>>>> github/build-bot-2.1.x
 #  error "Compiler not configured - please reconfigure"
 #endif
 //

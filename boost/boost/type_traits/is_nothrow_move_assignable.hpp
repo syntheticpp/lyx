@@ -16,6 +16,7 @@
 #include <boost/type_traits/has_nothrow_assign.hpp>
 #include <boost/type_traits/is_array.hpp>
 #include <boost/type_traits/is_reference.hpp>
+<<<<<<< HEAD
 #include <boost/utility/enable_if.hpp>
 #include <boost/type_traits/declval.hpp>
 
@@ -37,6 +38,23 @@ template <class T> struct is_nothrow_move_assignable<T&&> : public false_type{};
 
 namespace detail{
 
+=======
+#include <boost/type_traits/detail/ice_and.hpp>
+#include <boost/type_traits/detail/ice_or.hpp>
+#include <boost/type_traits/detail/ice_not.hpp>
+#include <boost/utility/enable_if.hpp>
+#include <boost/utility/declval.hpp>
+
+// should be the last #include
+#include <boost/type_traits/detail/bool_trait_def.hpp>
+
+namespace boost {
+
+namespace detail{
+
+#ifndef BOOST_NO_CXX11_NOEXCEPT
+
+>>>>>>> github/build-bot-2.1.x
 template <class T, class Enable = void>
 struct false_or_cpp11_noexcept_move_assignable: public ::boost::false_type {};
 
@@ -47,6 +65,7 @@ struct false_or_cpp11_noexcept_move_assignable <
     > : public ::boost::integral_constant<bool, BOOST_NOEXCEPT_EXPR(::boost::declval<T&>() = ::boost::declval<T>())>
 {};
 
+<<<<<<< HEAD
 }
 
 template <class T>
@@ -59,10 +78,22 @@ template <class T> struct is_nothrow_move_assignable<T&> : public ::boost::false
 #ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
 template <class T> struct is_nothrow_move_assignable<T&&> : public ::boost::false_type{};
 #endif
+=======
+template <class T>
+struct is_nothrow_move_assignable_imp{
+    BOOST_STATIC_CONSTANT(bool, value = (
+        ::boost::type_traits::ice_and<
+            ::boost::type_traits::ice_not< ::boost::is_volatile<T>::value >::value,
+            ::boost::type_traits::ice_not< ::boost::is_reference<T>::value >::value,
+            ::boost::detail::false_or_cpp11_noexcept_move_assignable<T>::value
+        >::value));
+};
+>>>>>>> github/build-bot-2.1.x
 
 #else
 
 template <class T>
+<<<<<<< HEAD
 struct is_nothrow_move_assignable : public integral_constant<bool,
    (::boost::has_trivial_move_assign<T>::value || ::boost::has_nothrow_assign<T>::value) &&  ! ::boost::is_array<T>::value>{};
 
@@ -74,8 +105,36 @@ template <> struct is_nothrow_move_assignable<void> : public false_type{};
 template <> struct is_nothrow_move_assignable<void const> : public false_type{};
 template <> struct is_nothrow_move_assignable<void const volatile> : public false_type{};
 template <> struct is_nothrow_move_assignable<void volatile> : public false_type{};
+=======
+struct is_nothrow_move_assignable_imp{
+    BOOST_STATIC_CONSTANT(bool, value = (
+        ::boost::type_traits::ice_and<
+            ::boost::type_traits::ice_or<
+                ::boost::has_trivial_move_assign<T>::value,
+                ::boost::has_nothrow_assign<T>::value
+            >::value,
+            ::boost::type_traits::ice_not< ::boost::is_array<T>::value >::value
+        >::value));
+};
+
+#endif
+
+}
+
+BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_nothrow_move_assignable,T,::boost::detail::is_nothrow_move_assignable_imp<T>::value)
+BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_nothrow_move_assignable,void,false)
+#ifndef BOOST_NO_CV_VOID_SPECIALIZATIONS
+BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_nothrow_move_assignable,void const,false)
+BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_nothrow_move_assignable,void const volatile,false)
+BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_nothrow_move_assignable,void volatile,false)
+>>>>>>> github/build-bot-2.1.x
 #endif
 
 } // namespace boost
 
+<<<<<<< HEAD
+=======
+#include <boost/type_traits/detail/bool_trait_undef.hpp>
+
+>>>>>>> github/build-bot-2.1.x
 #endif // BOOST_TT_IS_NOTHROW_MOVE_ASSIGNABLE_HPP_INCLUDED
