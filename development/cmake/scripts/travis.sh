@@ -230,7 +230,7 @@ mv ../lyx/development/cmake/modules/FindQt4.cmake $builddir/FindQt4.cmake
 $cmakebin ../lyx/ \
     -DLYX_CPACK=1 \
     -DLYX_PROGRAM_SUFFIX="" \
-    -DLYX_CONSOLE=FORCE \
+    -DLYX_CONSOLE=0 \
     -DLYX_XMINGW=$compiler \
     -DLYX_USE_QT=QT5 \
     -DLYX_QUIET=1 \
